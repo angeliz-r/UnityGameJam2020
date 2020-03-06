@@ -8,6 +8,10 @@ TagManager:
   - TimerFill
   - ManScore
   - NatureScore
+  - Plant
+  - Walkable
+  - NotWalkable
+  - Land
   layers:
   - Default
   - TransparentFX

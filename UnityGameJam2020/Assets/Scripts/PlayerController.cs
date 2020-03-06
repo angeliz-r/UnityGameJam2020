@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
     private Vector3 _myPos;
     public CheckCell[] checker;
     private bool _left, _right, _up, _down;
-    private bool _pLeft, _pRight, _pUp, _pDown;
     public Transform min, max;
-
+    public event Action EventPlant = () => { };
     private void Start()
     {
         _myPos = transform.position;
@@ -18,18 +18,16 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move();
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && transform.position == _myPos)
             Plant();
     }
 
-    private void Plant()
+    public void Plant()
     {
-        _pUp = checker[0].canPlant;
-        _pRight = checker[1].canPlant;
-        _pDown = checker[2].canPlant;
-        _pLeft = checker[3].canPlant;
-        
+        if(transform.position == _myPos)
+        EventPlant();
     }
+
     private void Move()
     {
         _up = checker[0].canMove;
@@ -40,35 +38,37 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W) && _up)
         {
-            if (Vector3.Distance(transform.position, _myPos) <= 0.05f && _myPos.y < max.position.y)
+            if (transform.position == _myPos && _myPos.y < max.position.y)
             {
                 _myPos = new Vector2(_myPos.x, _myPos.y + 1);
             }
         }
-        if (Input.GetKey(KeyCode.S) && _down)
+        else if (Input.GetKey(KeyCode.S) && _down)
         {
-            if (Vector3.Distance(transform.position, _myPos) <= 0.05f && _myPos.y > min.position.y)
+            if (transform.position == _myPos && _myPos.y > min.position.y)
             {
                 _myPos = new Vector2(_myPos.x, _myPos.y - 1);
             }
         }
-        if (Input.GetKey(KeyCode.A) && _left)
+        else if (Input.GetKey(KeyCode.A) && _left)
         {
-            if (Vector3.Distance(transform.position, _myPos) <= 0.05f && _myPos.x > min.position.x)
+            if (transform.position == _myPos && _myPos.x > min.position.x)
             {
                 _myPos = new Vector2(_myPos.x - 1, _myPos.y);
             }
         }
-        if (Input.GetKey(KeyCode.D) && _right)
+        else if (Input.GetKey(KeyCode.D) && _right)
         {
-            if (Vector3.Distance(transform.position, _myPos) <= 0.05f && _myPos.x < max.position.x)
+            if (transform.position == _myPos && _myPos.x < max.position.x)
             {
                 _myPos = new Vector2(_myPos.x + 1, _myPos.y);
             }
         }
         if (transform.position != _myPos)
         {
-            transform.position -= Vector3.Normalize(transform.position - _myPos) / 10f;
+            transform.position -= Vector3.Normalize(transform.position - _myPos) / 50f;
+            if (Vector3.Distance(transform.position, _myPos) <= 0.1f)
+                transform.position = _myPos;
         }
     }
 }
