@@ -47,4 +47,12 @@ public class GameManager : MonoBehaviour
         if (runStart != null)
             runStart();
     }
+
+
+    public event Action runEndGameFunct;
+    public void EndGame()
+    {
+        if (runEndGameFunct != null)
+            runEndGameFunct();
+    }
 }
