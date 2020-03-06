@@ -23,12 +23,13 @@ public class RoundScoring : MonoBehaviour
     }
     private void Start()
     {
-        GameManager.current.runEndGameFunct += CompareScores;
+        RoundManager.current.runEndGameFunct += CompareScores;
     }
     public void CompareScores()
     {
         if (_manScore.ReturnTotalScore() > _natureScore.ReturnTotalScore())
         {
+            _manScore.SaveCurrentScore();
             _manWins++;
             roundNum++;
 
@@ -39,6 +40,7 @@ public class RoundScoring : MonoBehaviour
         }
         else
         {
+            _natureScore.SaveCurrentScore();
             _natureWins++;
             roundNum++;
         }
@@ -83,7 +85,7 @@ public class RoundScoring : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameManager.current.runEndGameFunct -= CompareScores;
+        RoundManager.current.runEndGameFunct -= CompareScores;
     }
 }
 
