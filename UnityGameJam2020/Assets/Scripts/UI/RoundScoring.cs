@@ -20,6 +20,7 @@ public class RoundScoring : MonoBehaviour
         _manScore = GameObject.FindGameObjectWithTag("ManScore").GetComponent<GameScoring>();
         _natureScore = GameObject.FindGameObjectWithTag("NatureScore").GetComponent<GameScoring>();
     }
+
     public void CompareScores()
     {
         if (_manScore.ReturnTotalScore() > _natureScore.ReturnTotalScore())
@@ -60,6 +61,16 @@ public class RoundScoring : MonoBehaviour
         winnerName.text = "Nature Wins!";
         winnerScore.text = "Total score: " + _natureScore.AddTotalGameScore().ToString();
         winnerPanel.SetActive(true);
+    }
+
+    public int ReturnManWins()
+    {
+        return _manWins;
+    }
+
+    public int ReturnNatureWins()
+    {
+        return _natureWins;
     }
 }
 

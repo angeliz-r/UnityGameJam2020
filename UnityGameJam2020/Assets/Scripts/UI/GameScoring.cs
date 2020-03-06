@@ -23,7 +23,12 @@ public class GameScoring : MonoBehaviour
     }
     private void Start()
     {
+        GameManager.current.runUpdate += UpdateScoreDisplay;
+    }
 
+    public void UpdateScoreDisplay()
+    {
+        scoreDisplay.text = _totalScore.ToString();
     }
     public void AddLiveScore()
     {
@@ -51,6 +56,6 @@ public class GameScoring : MonoBehaviour
 
     private void OnDestroy()
     {
-
+        GameManager.current.runUpdate -= UpdateScoreDisplay;
     }
 }

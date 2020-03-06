@@ -8,6 +8,8 @@ TagManager:
   - TimerFill
   - ManScore
   - NatureScore
+  - Plant
+  - roundScorer
   layers:
   - Default
   - TransparentFX
