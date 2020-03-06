@@ -5,10 +5,10 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public static GameManager current;
-
+    public static GameManager instance { get { return current; } }
     private void Awake()
     {
-        current = this;
+        CreateSingleton();
     }
 
     private void Start()
@@ -19,6 +19,19 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         UpdateEvent();
+    }
+
+    void CreateSingleton()
+    {
+        if (current != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            current = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
     }
 
     public event Action runUpdate;

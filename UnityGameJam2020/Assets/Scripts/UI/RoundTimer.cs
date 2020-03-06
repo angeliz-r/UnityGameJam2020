@@ -16,18 +16,17 @@ public class RoundTimer : MonoBehaviour
     {
         _timerDisplay = this.transform.Find("TimerText").GetComponent<TextMeshProUGUI>();
         _fillBar = this.transform.Find("TimerFill").GetComponent<Image>();
-
+        _reducedTime = timerTime;
+        TimerStart();
     }
 
     private void Start()
     {
         GameManager.current.runUpdate += TimerCheck;
-        GameManager.current.runStart += TimerStart;
     }
 
     public void TimerStart()
     {
-        _reducedTime = timerTime;
         StartCoroutine(StartTurnTimer());
     }
     public void TimerCheck()
@@ -60,6 +59,6 @@ public class RoundTimer : MonoBehaviour
     private void OnDestroy()
     {
         GameManager.current.runUpdate -= TimerCheck;
-        GameManager.current.runStart -= TimerStart;
+        //GameManager.current.runStart -= TimerStart;
     }
 }
