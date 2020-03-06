@@ -15,6 +15,8 @@ public class RoundScoring : MonoBehaviour
     public GameObject winnerPanel;
     public TextMeshProUGUI winnerName;
     public TextMeshProUGUI winnerScore;
+    public GameObject manBG;
+    public GameObject natureBG;
 
     private void Awake()
     {
@@ -61,6 +63,8 @@ public class RoundScoring : MonoBehaviour
 
     public void DisplayManWin()
     {
+        natureBG.SetActive(true);
+        manBG.SetActive(false);
         winnerName.text = "Man Wins!";
         winnerScore.text = "TOTAL SCORE: " + _manScore.AddTotalGameScore().ToString();
         winnerPanel.SetActive(true);
@@ -68,6 +72,8 @@ public class RoundScoring : MonoBehaviour
 
     public void DisplayNatureWin()
     {
+        natureBG.SetActive(false);
+        manBG.SetActive(true);
         winnerName.text = "Nature Wins!";
         winnerScore.text = "TOTAL SCORE: " + _natureScore.AddTotalGameScore().ToString();
         winnerPanel.SetActive(true);
