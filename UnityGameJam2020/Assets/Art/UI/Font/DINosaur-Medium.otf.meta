@@ -1,0 +1,33 @@
+fileFormatVersion: 2
+guid: ced77de7a102a5647a545cf334ce7f83
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: DINosaur
+  fontNames:
+  - DINosaur
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: b96da184ffabfb04a84a286939a3f15f, type: 3}
+  - {fileID: 12800000, guid: 0e611666394137540977da41b3d2b3ca, type: 3}
+  - {fileID: 12800000, guid: 125e1ee6ffc51e7408367036bc6f39cd, type: 3}
+  - {fileID: 12800000, guid: 4cecbd099357e2c478c0b60761fa85cc, type: 3}
+  - {fileID: 12800000, guid: 09d31d1b86756ad42b4b860c1bed2edb, type: 3}
+  - {fileID: 12800000, guid: 25be16ed0ad708948ac6620b904bb328, type: 3}
+  - {fileID: 12800000, guid: 2db408feff9673b4a96416464cd2ae87, type: 3}
+  - {fileID: 12800000, guid: 6e9ed10fa5aa4db4c921e19ab878b5a5, type: 3}
+  - {fileID: 12800000, guid: 80fd4b1f8b6c95642b45ff78a3b6b2d3, type: 3}
+  - {fileID: 12800000, guid: 91b8095fc7c509a45b59bd897ea0e2a7, type: 3}
+  - {fileID: 12800000, guid: d5aaebef9b5f5104c97f47ed5f3dff1e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

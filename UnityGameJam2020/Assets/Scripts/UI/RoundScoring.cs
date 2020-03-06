@@ -10,6 +10,7 @@ public class RoundScoring : MonoBehaviour
     private int _manWins;
     private int _natureWins;
 
+    [Header("Winner Panel")]
     public GameObject winnerPanel;
     public TextMeshProUGUI winnerName;
     public TextMeshProUGUI winnerScore;
@@ -50,16 +51,15 @@ public class RoundScoring : MonoBehaviour
     public void DisplayManWin()
     {
         winnerName.text = "Man Wins!";
-        winnerScore.text = "Total score: " + _manScore.ReturnTotalScore().ToString();
+        winnerScore.text = "Total score: " + _manScore.AddTotalGameScore().ToString();
         winnerPanel.SetActive(true);
     }
 
     public void DisplayNatureWin()
     {
         winnerName.text = "Nature Wins!";
-        winnerScore.text = "Total score: " + _natureScore.ReturnTotalScore().ToString();
+        winnerScore.text = "Total score: " + _natureScore.AddTotalGameScore().ToString();
         winnerPanel.SetActive(true);
     }
-
 }
 
