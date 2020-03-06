@@ -9,9 +9,7 @@ TagManager:
   - ManScore
   - NatureScore
   - Plant
-  - Walkable
-  - NotWalkable
-  - Land
+  - roundScorer
   layers:
   - Default
   - TransparentFX

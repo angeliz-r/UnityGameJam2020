@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager current;
     public static GameManager instance { get { return current; } }
+
     private void Awake()
     {
         CreateSingleton();
@@ -20,7 +22,6 @@ public class GameManager : MonoBehaviour
     {
         UpdateEvent();
     }
-
     void CreateSingleton()
     {
         if (current != null)
@@ -47,4 +48,7 @@ public class GameManager : MonoBehaviour
         if (runStart != null)
             runStart();
     }
+
+
+
 }
