@@ -8,12 +8,15 @@ public class GridController : MonoBehaviour
     public GameObject brownCell;
     private GameObject[] _grid = new GameObject[81];
     private GameObject[] _plant = new GameObject[16];
+    public GameObject block;
     private int _gridCount, _plantCount;
     public Transform max;
+
     private void Start()
     {
         CreateGrid();
         CreatePlantArea();
+        CreateBlocks();
     }
 
     private void Update()
@@ -51,6 +54,21 @@ public class GridController : MonoBehaviour
                     _plant[_plantCount] = Instantiate(brownCell, new Vector2(i, j), Quaternion.identity);
                     _plant[_plantCount].transform.parent = this.transform;
                     ++_plantCount;
+                }
+            }
+        }
+    }
+
+    void CreateBlocks()
+    {
+        for (int i = 1; i <= max.position.x; i += 2)
+        {
+            for (int j = 1; j <= max.position.y; j += 2)
+            {
+                if (i % 2 == 1 && j % 2 == 1)
+                {
+                    GameObject blocks = Instantiate(block, new Vector2(i, j), Quaternion.identity);
+                    blocks.transform.parent = this.transform;
                 }
             }
         }
