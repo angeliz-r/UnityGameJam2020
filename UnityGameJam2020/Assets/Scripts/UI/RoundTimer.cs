@@ -56,4 +56,10 @@ public class RoundTimer : MonoBehaviour
             --_reducedTime;
         }
     }
+
+    private void OnDestroy()
+    {
+        GameManager.current.runUpdate -= TimerCheck;
+        GameManager.current.runStart -= TimerStart;
+    }
 }

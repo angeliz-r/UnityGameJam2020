@@ -6,6 +6,8 @@ TagManager:
   tags:
   - TimerText
   - TimerFill
+  - ManScore
+  - NatureScore
   layers:
   - Default
   - TransparentFX
