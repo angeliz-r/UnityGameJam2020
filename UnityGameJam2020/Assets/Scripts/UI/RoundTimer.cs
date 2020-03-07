@@ -26,7 +26,7 @@ public class RoundTimer : MonoBehaviour
 
     private void Start()
     {
-        //GameManager.current.runUpdate += TimerCheck;
+        GameManager.current.runUpdate += TimerCheck;
         RoundManager.current.runStartGameFunct += TimerStart;
     }
 
@@ -87,7 +87,7 @@ public class RoundTimer : MonoBehaviour
 
     private void OnDestroy()
     {
-        //GameManager.current.runUpdate -= TimerCheck;
+        GameManager.current.runUpdate -= TimerCheck;
         RoundManager.current.runStartGameFunct -= TimerStart;
     }
 }
