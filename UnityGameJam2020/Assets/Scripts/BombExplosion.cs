@@ -14,7 +14,7 @@ public class BombExplosion : MonoBehaviour
         _rScore = FindObjectOfType<RoundScoring>();
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         if (_bombType == Bomb.BombType.CROSS) {
             if(transform.localEulerAngles.z == 0 || transform.localEulerAngles.z == 90)
                 transform.Translate(transform.right);
