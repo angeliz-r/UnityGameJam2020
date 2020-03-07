@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     private RoundScoring _rScore;
     private BombPlanter _bPlanter;
     private AudioController _audio;
+
+    private Animator _anim;
+
     private void Start()
     {
         stunValue = 0;
@@ -28,6 +31,7 @@ public class PlayerController : MonoBehaviour
         _rScore = FindObjectOfType<RoundScoring>();
         _bPlanter = GetComponent<BombPlanter>();
         _audio = GetComponent<AudioController>();
+        _anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -156,6 +160,7 @@ public class PlayerController : MonoBehaviour
             {             
                 _myPos = new Vector2(_myPos.x - 1, _myPos.y);
             }
+            GetComponent<SpriteRenderer>().flipX = true;
         }
         else if ((Input.GetKey(KeyCode.D) || _ds.GetAxisRaw(ControlCode.LeftStickX) > 0) && transform.position == _myPos)
         {
@@ -164,13 +169,30 @@ public class PlayerController : MonoBehaviour
             {
                 _myPos = new Vector2(_myPos.x + 1, _myPos.y);
             }
+            GetComponent<SpriteRenderer>().flipX = false;
         }
-        if (transform.position != _myPos)
-        {
+
+        if (transform.position != _myPos) {
             transform.position -= Vector3.Normalize(transform.position - _myPos) / 33f;
             if (Vector3.Distance(transform.position, _myPos) <= 0.1f)
                 transform.position = _myPos;
+            SetAnimWalk();
+        } else {
+            SetAnimStop();
         }
         _dir = transform.position + new Vector3(_faceDir.x, _faceDir.y, 0);
+    }
+
+    void SetAnimStop() {
+        _anim.SetBool("FaceUp", false);
+        _anim.SetBool("FaceDown", false);
+        _anim.SetBool("FaceSide", false);
+    }
+
+    void SetAnimWalk() {
+        _anim.SetBool("FaceUp", (Input.GetKey(KeyCode.W) || _ds.GetAxisRaw(ControlCode.LeftStickY) > 0));
+        _anim.SetBool("FaceDown", (Input.GetKey(KeyCode.S) || _ds.GetAxisRaw(ControlCode.LeftStickY) < 0));
+        _anim.SetBool("FaceSide", (Input.GetKey(KeyCode.A) || _ds.GetAxisRaw(ControlCode.LeftStickX) < 0)
+            || (Input.GetKey(KeyCode.D) || _ds.GetAxisRaw(ControlCode.LeftStickX) > 0));
     }
 }
