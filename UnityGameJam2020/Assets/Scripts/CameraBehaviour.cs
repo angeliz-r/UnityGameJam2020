@@ -12,14 +12,13 @@ public class CameraBehaviour : MonoBehaviour
 
     private void Update() {
         if(_mainCam.orthographicSize != _gridSize)
-        _mainCam.orthographicSize = Mathf.Lerp(_mainCam.orthographicSize, _gridSize + 1, 10f);
+        _mainCam.orthographicSize = Mathf.Lerp(_mainCam.orthographicSize, _gridSize + orthoOffset, 10f);
     }
 
     public void UpdateCameraFocus(int size) {
         var c = Mathf.Floor((float)size / 2);
         _gridSize = c;
-        Vector2 p = new Vector2(c, c);
-        _mainCam.orthographicSize = c + 10;
+        Vector2 p = new Vector2(c, c + orthoOffset/2);
         _mainCam.transform.LeanMove(p, 0.5f);
     }
 }
