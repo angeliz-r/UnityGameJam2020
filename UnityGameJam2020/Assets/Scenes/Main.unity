@@ -1408,6 +1408,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1140394050}
     m_Modifications:
+    - target: {fileID: 5628963793096013633, guid: 65ee56f6ae640974c8961bf841217a10,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628963793096013633, guid: 65ee56f6ae640974c8961bf841217a10,
+        type: 3}
+      propertyPath: m_FillOrigin
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628963793096013633, guid: 65ee56f6ae640974c8961bf841217a10,
+        type: 3}
+      propertyPath: m_FillMethod
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628963793096013633, guid: 65ee56f6ae640974c8961bf841217a10,
+        type: 3}
+      propertyPath: m_FillClockwise
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5628963793832603250, guid: 65ee56f6ae640974c8961bf841217a10,
         type: 3}
       propertyPath: timerTime
