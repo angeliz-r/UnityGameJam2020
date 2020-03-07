@@ -4,9 +4,9 @@ public class CameraBehaviour : MonoBehaviour
 {
     private Camera _mainCam;
     private float _gridSize;
-
+    [SerializeField] private float orthoOffset;
     private void Start() {
-        _mainCam = Camera.main;
+        _mainCam = GetComponent<Camera>();
         UpdateCameraFocus(9);
     }
 
@@ -19,7 +19,7 @@ public class CameraBehaviour : MonoBehaviour
         var c = Mathf.Floor((float)size / 2);
         _gridSize = c;
         Vector2 p = new Vector2(c, c);
-        _mainCam.orthographicSize = c + 1;
+        _mainCam.orthographicSize = c + 10;
         _mainCam.transform.LeanMove(p, 0.5f);
     }
 }
