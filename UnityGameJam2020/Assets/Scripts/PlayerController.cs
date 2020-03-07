@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 _bombDir, _bombDes;
     RaycastHit2D hit;
     public event Action EventPlant = () => { };
-    private GameScoring _gScore;
+    private RoundScoring _rScore;
+    private BombPlanter _bPlanter;
 
 
     private void Start()
@@ -25,7 +26,8 @@ public class PlayerController : MonoBehaviour
         stunValue = 0;
         _ds = GetComponent<DualShock4Input>();
         _myPos = transform.position;
-        _gScore = FindObjectOfType<GameScoring>();
+        _rScore = FindObjectOfType<RoundScoring>();
+        _bPlanter = GetComponent<BombPlanter>();
     }
 
     private void Update()
@@ -64,10 +66,21 @@ public class PlayerController : MonoBehaviour
             {
                 GameObject obj = Instantiate(plant, _dir, Quaternion.identity);
                 obj.transform.parent = hit.transform;
-                _gScore.AddLiveScore();
+                ScoreUpdateOnPlant();
                 EventPlant();
             }
         }
+    }
+
+    PlayerType MyType() {
+        return _bPlanter.playerType;
+    }
+
+    void ScoreUpdateOnPlant() {
+        if (MyType() == PlayerType.MAN)
+            _rScore.manScore.AddLiveScore();
+        else if (MyType() == PlayerType.NATURE)
+            _rScore.natureScore.AddLiveScore();
     }
 
     void Push()

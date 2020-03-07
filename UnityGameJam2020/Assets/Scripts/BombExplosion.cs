@@ -4,14 +4,14 @@ public class BombExplosion : MonoBehaviour
 {
     private PlayerType _type;
     private Bomb.BombType _bombType;
-    private GameScoring _gScore;
+    private RoundScoring _rScore;
 
     private void OnEnable() {
         Invoke("DestroySelf", 1);
     }
 
     private void Start() {
-        _gScore = GetComponent<GameScoring>();
+        _rScore = GetComponent<RoundScoring>();
     }
 
     private void Update() {
@@ -26,10 +26,16 @@ public class BombExplosion : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Plant"))
         {
-            if (_type != collision.GetComponent<Plants>().myPlant)
+            var type = collision.GetComponent<Plants>().myPlant;
+            if (_type != type)
             {
                 collision.transform.parent.GetComponent<Collider2D>().enabled = true;
-                _gScore.DestroyLiveScore();
+
+                if (type == PlayerType.MAN)
+                    _rScore.manScore.DestroyLiveScore();
+                else if (type == PlayerType.NATURE)
+                    _rScore.natureScore.DestroyLiveScore();
+
                 Destroy(collision.gameObject);
             }
         }

@@ -19,6 +19,8 @@ public class BombPlanter : MonoBehaviour
     private bool _hasBomb = false;
     private DualShock4Input ds;
 
+    public PlayerType playerType { get { return _playerType; } }
+
 
     private void OnEnable() {
         _hasBomb = false;
