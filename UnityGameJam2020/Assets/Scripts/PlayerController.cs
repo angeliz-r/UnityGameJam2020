@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public event Action EventPlant = () => { };
     private RoundScoring _rScore;
     private BombPlanter _bPlanter;
+    private Animator _anim;
 
 
     private void Start()
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
         _myPos = transform.position;
         _rScore = FindObjectOfType<RoundScoring>();
         _bPlanter = GetComponent<BombPlanter>();
+        _anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
         if (stunValue > 0)
         {
             StunDuration();
+            _anim.SetTrigger("Stun");
         }
         else
         {
@@ -51,7 +54,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         if(stunValue <= 0)
-        Move();
+            Move();
         if (bomb != null)
         {
             MoveBomb();
@@ -121,45 +124,56 @@ public class PlayerController : MonoBehaviour
         _down = checker[2].canMove;
         _left = checker[3].canMove;
 
-        if ((Input.GetKey(KeyCode.W) || _ds.GetAxisRaw(ControlCode.LeftStickY) > 0) && transform.position == _myPos)
-        {
+        if ((Input.GetKey(KeyCode.W) || _ds.GetAxisRaw(ControlCode.LeftStickY) > 0) && transform.position == _myPos) {
             _faceDir = new Vector2(0, 1);
-            if (_up && _myPos.y < max.position.y)
-            {
+            if (_up && _myPos.y < max.position.y) {
                 _myPos = new Vector2(_myPos.x, _myPos.y + 1);
             }
-        }
-        else if ((Input.GetKey(KeyCode.S) || _ds.GetAxisRaw(ControlCode.LeftStickY) < 0) && transform.position == _myPos)
-        {
+            
+        } else if ((Input.GetKey(KeyCode.S) || _ds.GetAxisRaw(ControlCode.LeftStickY) < 0) && transform.position == _myPos) {
             _faceDir = new Vector2(0, -1);
 
-            if (_down && _myPos.y > min.position.y)
-            {
+            if (_down && _myPos.y > min.position.y) {
                 _myPos = new Vector2(_myPos.x, _myPos.y - 1);
             }
-        }
-        else if ((Input.GetKey(KeyCode.A) || _ds.GetAxisRaw(ControlCode.LeftStickX) < 0) && transform.position == _myPos)
-        {
+            
+        } else if ((Input.GetKey(KeyCode.A) || _ds.GetAxisRaw(ControlCode.LeftStickX) < 0) && transform.position == _myPos) {
             _faceDir = new Vector2(-1, 0);
-            if (_left && _myPos.x > min.position.x)
-            {             
+            if (_left && _myPos.x > min.position.x) {
                 _myPos = new Vector2(_myPos.x - 1, _myPos.y);
             }
-        }
-        else if ((Input.GetKey(KeyCode.D) || _ds.GetAxisRaw(ControlCode.LeftStickX) > 0) && transform.position == _myPos)
-        {
+            
+            GetComponent<SpriteRenderer>().flipX = true;
+        } else if ((Input.GetKey(KeyCode.D) || _ds.GetAxisRaw(ControlCode.LeftStickX) > 0) && transform.position == _myPos) {
             _faceDir = new Vector2(1, 0);
-            if (_right && _myPos.x < max.position.x)
-            {
+            if (_right && _myPos.x < max.position.x) {
                 _myPos = new Vector2(_myPos.x + 1, _myPos.y);
             }
+            
+            GetComponent<SpriteRenderer>().flipX = false;
         }
+
+
         if (transform.position != _myPos)
         {
             transform.position -= Vector3.Normalize(transform.position - _myPos) / 33f;
             if (Vector3.Distance(transform.position, _myPos) <= 0.1f)
                 transform.position = _myPos;
+            AnimSetter();
+        } else {
+            _anim.SetBool("FaceSide", false);
+            _anim.SetBool("FaceDown", false);
+            _anim.SetBool("FaceUp", false);
         }
         _dir = transform.position + new Vector3(_faceDir.x, _faceDir.y, 0);
+
+
+        void AnimSetter() {
+            _anim.SetBool("FaceSide", (Input.GetKey(KeyCode.D) || _ds.GetAxisRaw(ControlCode.LeftStickX) > 0) 
+                || (Input.GetKey(KeyCode.A) || _ds.GetAxisRaw(ControlCode.LeftStickX) < 0));
+
+            _anim.SetBool("FaceDown", (Input.GetKey(KeyCode.S) || _ds.GetAxisRaw(ControlCode.LeftStickY) < 0));
+            _anim.SetBool("FaceUp", (Input.GetKey(KeyCode.W) || _ds.GetAxisRaw(ControlCode.LeftStickY) > 0));
+        }
     }
 }

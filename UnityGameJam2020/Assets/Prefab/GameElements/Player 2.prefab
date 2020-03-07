@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8648827186781293704}
   - component: {fileID: 8648827186781293707}
   - component: {fileID: 8648827186781293709}
+  - component: {fileID: -2142663859502718031}
   m_Layer: 2
   m_Name: Player 2
   m_TagString: Player
@@ -192,6 +193,25 @@ MonoBehaviour:
     type: 3}
   _crossBomb: {fileID: 4372081166208676694, guid: f15de47a6f36a5746a11d2b5e0658573,
     type: 3}
+--- !u!95 &-2142663859502718031
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8648827186781293706}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e06ae34a22e91d244b62bcb72f588329, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8648827186885392085
 GameObject:
   m_ObjectHideFlags: 0
