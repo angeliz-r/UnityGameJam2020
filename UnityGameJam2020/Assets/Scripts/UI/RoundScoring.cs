@@ -7,8 +7,8 @@ public class RoundScoring : MonoBehaviour
     public GameScoring manScore;
     public GameScoring natureScore;
 
-    private int _manWins;
-    private int _natureWins;
+    [SerializeField]private int _manWins;
+    [SerializeField]private int _natureWins;
     public int roundNum;
 
     [Header("Winner Panel")]
@@ -17,7 +17,7 @@ public class RoundScoring : MonoBehaviour
     public TextMeshProUGUI winnerScore;
     public GameObject manBG;
     public GameObject natureBG;
-
+    public RoundTimer roundTimer;
     private void Awake()
     {
         manScore = GameObject.FindGameObjectWithTag("ManScore").GetComponent<GameScoring>();
@@ -37,7 +37,7 @@ public class RoundScoring : MonoBehaviour
         }
         else if (manScore.ReturnTotalScore() == natureScore.ReturnTotalScore())
         {
-            --roundNum;
+            roundNum++;
         }
         else
         {
@@ -50,26 +50,23 @@ public class RoundScoring : MonoBehaviour
 
     public void CountWins()
     {
-        if (manScore.ReturnTotalScore() > natureScore.ReturnTotalScore())
-        {
-            _manWins++;
-
-        }
-        else if (manScore.ReturnTotalScore() == natureScore.ReturnTotalScore())
-        {
-            --roundNum;
-        }
-        else
-        {
-            _natureWins++;
-        }
-        if (_manWins >= 2)
+        CompareScores();
+        int computeManWinsDiff = _manWins - _natureWins;
+        int computeNatureWinsDiff = _natureWins - _manWins;
+        if (computeManWinsDiff > computeNatureWinsDiff)
         {
             DisplayManWin();
         }
-        else if (_natureWins >= 2)
+        else if (computeNatureWinsDiff > computeManWinsDiff)
         {
             DisplayNatureWin();
+        }
+        else
+        {
+            //if no one has >2 wins, restart
+            roundNum++;
+            roundTimer.TimerStart();
+            roundTimer.doOnce = false;
         }
     }
 

@@ -15,7 +15,11 @@ public class Plants : MonoBehaviour
     private void Start()
     {
         grid = FindObjectOfType<GridController>();
-        grid.EventWipePlants += DestroyPlants;
+       
+    }
+
+    private void OnDestroy() {
+        grid.EventWipePlants -= DestroyPlants;
     }
     void DestroyPlants()
     {
