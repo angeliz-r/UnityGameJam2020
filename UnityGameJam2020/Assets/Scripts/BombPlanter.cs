@@ -23,7 +23,7 @@ public class BombPlanter : MonoBehaviour
 
 
     private void OnEnable() {
-        _hasBomb = false;
+        _hasBomb = true;
     }
 
     private void Start() {
