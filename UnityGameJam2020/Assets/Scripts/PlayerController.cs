@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
         if(stunValue <= 0)
         {
             Move();
+            SetAnimWalk();
         }
 
         if (bomb != null)
@@ -193,7 +194,7 @@ public class PlayerController : MonoBehaviour
             transform.position -= Vector3.Normalize(transform.position - _myPos) / 33f;
             if (Vector3.Distance(transform.position, _myPos) <= 0.1f)
                 transform.position = _myPos;
-            SetAnimWalk();
+            
         } else {
             SetAnimStop();
         }

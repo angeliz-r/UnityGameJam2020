@@ -72,8 +72,8 @@ public class RoundScoring : MonoBehaviour
 
     public void DisplayManWin()
     {
-        natureBG.SetActive(true);
-        manBG.SetActive(false);
+        natureBG.SetActive(false);
+        manBG.SetActive(true);
         winnerName.text = "Man Wins!";
         winnerScore.text = "TOTAL SCORE: " + manScore.AddTotalGameScore().ToString();
         winnerPanel.SetActive(true);
@@ -82,8 +82,8 @@ public class RoundScoring : MonoBehaviour
 
     public void DisplayNatureWin()
     {
-        natureBG.SetActive(false);
-        manBG.SetActive(true);
+        natureBG.SetActive(true);
+        manBG.SetActive(false);
         winnerName.text = "Nature Wins!";
         winnerScore.text = "TOTAL SCORE: " + natureScore.AddTotalGameScore().ToString();
         winnerPanel.SetActive(true);
