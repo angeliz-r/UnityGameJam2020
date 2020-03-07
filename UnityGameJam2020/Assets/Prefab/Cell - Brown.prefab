@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3690247220583815568}
   - component: {fileID: 4075460793319634371}
   - component: {fileID: 1337509276}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cell - Brown
   m_TagString: Land
   m_Icon: {fileID: 0}
