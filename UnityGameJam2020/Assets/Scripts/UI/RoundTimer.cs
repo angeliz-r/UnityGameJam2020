@@ -10,39 +10,31 @@ public class RoundTimer : MonoBehaviour
     private TextMeshProUGUI _timerDisplay;
     private float _reducedTime;
     private Image _fillBar;
-    private RoundScoring _roundScoring;
+    public bool newRound;
+
     private void Awake()
     {
-        _roundScoring = GameObject.FindGameObjectWithTag("roundScorer").GetComponent<RoundScoring>();
         _timerDisplay = this.transform.Find("TimerText").GetComponent<TextMeshProUGUI>();
         _fillBar = this.transform.Find("TimerFill").GetComponent<Image>();
-        _reducedTime = timerTime;
+
     }
 
     private void Start()
     {
         GameManager.current.runUpdate += TimerCheck;
-        RoundManager.current.runStartGameFunct += TimerStart;
+        GameManager.current.runStart += TimerStart;
     }
 
     public void TimerStart()
     {
+        _reducedTime = timerTime;
         StartCoroutine(StartTurnTimer());
     }
     public void TimerCheck()
     {
         if (_reducedTime <= 0)
         {
-            if (_roundScoring.roundNum < 3)
-            {
-                StopCoroutine(StartTurnTimer());
-                _reducedTime = timerTime;
-                TimerStart();
-            }
-            else if (_roundScoring.roundNum >= 3)
-            {
-                StopCoroutine(StartTurnTimer());
-            }
+            StopCoroutine(StartTurnTimer());
         }
     }
     public void TimeDisplay(int time)
@@ -63,11 +55,5 @@ public class RoundTimer : MonoBehaviour
             TimeDisplay((int)_reducedTime);
             --_reducedTime;
         }
-    }
-
-    private void OnDestroy()
-    {
-        GameManager.current.runUpdate -= TimerCheck;
-        RoundManager.current.runStartGameFunct -= TimerStart;
     }
 }
