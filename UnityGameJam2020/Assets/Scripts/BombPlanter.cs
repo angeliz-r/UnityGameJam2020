@@ -28,6 +28,10 @@ public class BombPlanter : MonoBehaviour
         ds = GetComponent<DualShock4Input>();
     }
 
+    private void Update()
+    {
+        PlantABomb();
+    }
     public void SetHasBomb(bool b) {
         _hasBomb = b;
     }
@@ -36,6 +40,7 @@ public class BombPlanter : MonoBehaviour
         if (_hasBomb) {
             if (ds.GetButtonDown(ControlCode.Circle)) {
                 // Plant Round Bomb
+                Debug.Log("The bomb has been planted");
                  SetBomb(_playerType, _roundBomb);
             }
             if (ds.GetButtonDown(ControlCode.Triangle)) {

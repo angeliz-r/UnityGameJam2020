@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.UI;
 public class RoundTimer : MonoBehaviour
 {
-    public float timerTime;
+    public float timerTime = 60;
     private TextMeshProUGUI _timerDisplay;
     private float _reducedTime;
     private Image _fillBar;
