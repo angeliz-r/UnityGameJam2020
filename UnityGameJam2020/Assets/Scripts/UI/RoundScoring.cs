@@ -4,8 +4,8 @@ using UnityEngine;
 using TMPro;
 public class RoundScoring : MonoBehaviour
 {
-    private GameScoring _manScore;
-    private GameScoring _natureScore;
+    public GameScoring manScore;
+    public GameScoring natureScore;
 
     private int _manWins;
     private int _natureWins;
@@ -20,8 +20,8 @@ public class RoundScoring : MonoBehaviour
 
     private void Awake()
     {
-        _manScore = GameObject.FindGameObjectWithTag("ManScore").GetComponent<GameScoring>();
-        _natureScore = GameObject.FindGameObjectWithTag("NatureScore").GetComponent<GameScoring>();
+        manScore = GameObject.FindGameObjectWithTag("ManScore").GetComponent<GameScoring>();
+        natureScore = GameObject.FindGameObjectWithTag("NatureScore").GetComponent<GameScoring>();
     }
     private void Start()
     {
@@ -29,20 +29,20 @@ public class RoundScoring : MonoBehaviour
     }
     public void CompareScores()
     {
-        if (_manScore.ReturnTotalScore() > _natureScore.ReturnTotalScore())
+        if (manScore.ReturnTotalScore() > natureScore.ReturnTotalScore())
         {
-            _manScore.SaveCurrentScore();
+            manScore.SaveCurrentScore();
             _manWins++;
             roundNum++;
 
         }
-        else if (_manScore.ReturnTotalScore() == _natureScore.ReturnTotalScore())
+        else if (manScore.ReturnTotalScore() == natureScore.ReturnTotalScore())
         {
             //STALEMATE, do not add wins
         }
         else
         {
-            _natureScore.SaveCurrentScore();
+            natureScore.SaveCurrentScore();
             _natureWins++;
             roundNum++;
         }
@@ -65,7 +65,7 @@ public class RoundScoring : MonoBehaviour
         natureBG.SetActive(true);
         manBG.SetActive(false);
         winnerName.text = "Man Wins!";
-        winnerScore.text = "TOTAL SCORE: " + _manScore.AddTotalGameScore().ToString();
+        winnerScore.text = "TOTAL SCORE: " + manScore.AddTotalGameScore().ToString();
         winnerPanel.SetActive(true);
     }
 
@@ -74,7 +74,7 @@ public class RoundScoring : MonoBehaviour
         natureBG.SetActive(false);
         manBG.SetActive(true);
         winnerName.text = "Nature Wins!";
-        winnerScore.text = "TOTAL SCORE: " + _natureScore.AddTotalGameScore().ToString();
+        winnerScore.text = "TOTAL SCORE: " + natureScore.AddTotalGameScore().ToString();
         winnerPanel.SetActive(true);
     }
 
