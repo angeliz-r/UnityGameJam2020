@@ -7,8 +7,11 @@ public class PlayerController : MonoBehaviour
 {
     private Vector3 _myPos;
     public CheckCell[] checker;
+    public GameObject plant;
     private bool _left, _right, _up, _down;
     public Transform min, max;
+    private int _layerMask = LayerMask.GetMask("Land");
+    private Vector2 _faceDir;
     public event Action EventPlant = () => { };
     private void Start()
     {
@@ -24,8 +27,14 @@ public class PlayerController : MonoBehaviour
 
     public void Plant()
     {
-        if(transform.position == _myPos)
-        EventPlant();
+        RaycastHit2D hit;
+        hit = Physics2D.Raycast(transform.position, _faceDir, _layerMask);
+        if (hit.collider.CompareTag("Land") && transform.position == _myPos)
+        {
+            Instantiate(plant, transform.position + new Vector3(_faceDir.x, _faceDir.y, 0), Quaternion.identity);
+
+            EventPlant();
+        }
     }
 
     private void Move()
@@ -40,6 +49,7 @@ public class PlayerController : MonoBehaviour
         {
             if (transform.position == _myPos && _myPos.y < max.position.y)
             {
+                _faceDir = new Vector2(0, 1);
                 _myPos = new Vector2(_myPos.x, _myPos.y + 1);
             }
         }
@@ -47,6 +57,7 @@ public class PlayerController : MonoBehaviour
         {
             if (transform.position == _myPos && _myPos.y > min.position.y)
             {
+                _faceDir = new Vector2(0, -1);
                 _myPos = new Vector2(_myPos.x, _myPos.y - 1);
             }
         }
@@ -54,6 +65,7 @@ public class PlayerController : MonoBehaviour
         {
             if (transform.position == _myPos && _myPos.x > min.position.x)
             {
+                _faceDir = new Vector2(-1, 0);
                 _myPos = new Vector2(_myPos.x - 1, _myPos.y);
             }
         }
@@ -61,6 +73,7 @@ public class PlayerController : MonoBehaviour
         {
             if (transform.position == _myPos && _myPos.x < max.position.x)
             {
+                _faceDir = new Vector2(1, 0);
                 _myPos = new Vector2(_myPos.x + 1, _myPos.y);
             }
         }

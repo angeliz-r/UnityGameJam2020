@@ -9,7 +9,6 @@ public class CheckCell : MonoBehaviour
     public bool canPlant;
     private bool _plantOnce;
 
-
     private void Start()
     {
         PlayerController playerPC = FindObjectOfType<PlayerController>(); 
@@ -18,6 +17,7 @@ public class CheckCell : MonoBehaviour
         _plantOnce = false;
         playerPC.EventPlant += OnPlant;
     }
+    
 
     void OnPlant()
     {
