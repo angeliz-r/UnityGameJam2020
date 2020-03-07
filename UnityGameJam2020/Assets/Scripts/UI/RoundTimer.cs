@@ -11,11 +11,13 @@ public class RoundTimer : MonoBehaviour
     private float _reducedTime;
     private Image _fillBar;
     private RoundScoring _roundScoring;
+    private RoundTextDisplay _roundDisplay;
     private void Awake()
     {
         _roundScoring = GameObject.FindGameObjectWithTag("roundScorer").GetComponent<RoundScoring>();
         _timerDisplay = this.transform.Find("TimerText").GetComponent<TextMeshProUGUI>();
         _fillBar = this.transform.Find("TimerFill").GetComponent<Image>();
+        _roundDisplay = GameObject.FindGameObjectWithTag("RoundText").GetComponent<RoundTextDisplay>();
         _reducedTime = timerTime;
     }
 
@@ -33,9 +35,11 @@ public class RoundTimer : MonoBehaviour
     {
         if (_reducedTime <= 0)
         {
+            _roundDisplay.DisplayRoundEnd();
             if (_roundScoring.roundNum < 3)
             {
                 StopCoroutine(StartTurnTimer());
+                _roundDisplay.DisplayRoundNumber();
                 _reducedTime = timerTime;
                 TimerStart();
             }

@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 public class GameScoring : MonoBehaviour
 {
-    public float plantUnitScore = 10;
+    public float plantUnitScore;
     public TextMeshProUGUI scoreDisplay;
     private RoundScoring _roundScoring;
 
