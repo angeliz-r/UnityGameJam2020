@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
             {
                 bomb = hit.collider.gameObject;
                 _bombDes = transform.position - bomb.transform.position;
+                _bombDes *= 2f;
                 _bombDes = bomb.transform.position - _bombDes;
                 if (_bombDes.x < min.position.x)
                     _bombDes = new Vector3(min.position.x, _bombDes.y, _bombDes.z);
