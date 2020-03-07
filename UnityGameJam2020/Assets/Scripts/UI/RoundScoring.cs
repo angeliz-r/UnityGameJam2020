@@ -37,7 +37,7 @@ public class RoundScoring : MonoBehaviour
         }
         else if (manScore.ReturnTotalScore() == natureScore.ReturnTotalScore())
         {
-            //STALEMATE, do not add wins
+            --roundNum;
         }
         else
         {
@@ -57,7 +57,7 @@ public class RoundScoring : MonoBehaviour
         }
         else if (manScore.ReturnTotalScore() == natureScore.ReturnTotalScore())
         {
-
+            --roundNum;
         }
         else
         {
