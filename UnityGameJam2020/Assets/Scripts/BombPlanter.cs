@@ -21,7 +21,7 @@ public class BombPlanter : MonoBehaviour
 
 
     private void OnEnable() {
-        _hasBomb = false;
+        _hasBomb = true;
     }
 
     private void Start() {
@@ -40,7 +40,6 @@ public class BombPlanter : MonoBehaviour
         if (_hasBomb) {
             if (ds.GetButtonDown(ControlCode.Circle)) {
                 // Plant Round Bomb
-                Debug.Log("The bomb has been planted");
                  SetBomb(_playerType, _roundBomb);
             }
             if (ds.GetButtonDown(ControlCode.Triangle)) {

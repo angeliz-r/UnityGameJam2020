@@ -41,7 +41,8 @@ public class PlayerController : MonoBehaviour
                     && transform.position == _myPos)
             {
                 Debug.Log("PLANT");
-                Instantiate(plant, _dir, Quaternion.identity);
+                GameObject obj = Instantiate(plant, _dir, Quaternion.identity);
+                obj.transform.parent = hit.transform;
                 EventPlant();
             }
         }

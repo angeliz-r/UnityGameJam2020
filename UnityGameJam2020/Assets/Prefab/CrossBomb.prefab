@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4372081166208676695}
   - component: {fileID: 4372081166208676698}
   - component: {fileID: 4372081166208676697}
+  - component: {fileID: 1199538036}
   m_Layer: 0
   m_Name: CrossBomb
   m_TagString: Untagged
@@ -101,6 +102,7 @@ MonoBehaviour:
     type: 3}
   _roundProjectile: {fileID: 5325585146100124388, guid: cc14e49d90ba80543a602abb33696083,
     type: 3}
+  _playerType: 0
 --- !u!58 &4372081166208676697
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -117,3 +119,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.225
+--- !u!50 &1199538036
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4372081166208676694}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

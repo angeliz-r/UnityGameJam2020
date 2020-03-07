@@ -15,7 +15,8 @@ public class Bomb : MonoBehaviour
     [SerializeField] GameObject _crossProjectile;
     [SerializeField] GameObject _roundProjectile;
 
-    private PlayerType _playerType;
+
+    [SerializeField]private PlayerType _playerType;
 
     private void Start() {
         Invoke("Explode", _explodeTime);

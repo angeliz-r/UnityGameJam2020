@@ -19,7 +19,14 @@ public class BombExplosion : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        // check if other object, or tree/building has the type of man or nature, if they don't match, hide.
+        if(collision.CompareTag("Plant"))
+        {
+            if (_type != collision.GetComponent<Plants>().myPlant)
+            {
+                collision.transform.parent.GetComponent<Collider2D>().enabled = true;
+                Destroy(collision.gameObject);
+            }
+        }
     }
 
     void DestroySelf() {

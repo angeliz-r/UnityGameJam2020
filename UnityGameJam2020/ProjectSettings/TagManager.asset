@@ -14,6 +14,7 @@ TagManager:
   - Land
   - NotWalkable
   - RoundText
+  - Bomb
   layers:
   - Default
   - TransparentFX
