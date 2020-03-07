@@ -10,7 +10,7 @@ public enum PlayerType {
 public class BombPlanter : MonoBehaviour
 {
     [SerializeField] PlayerType _playerType;
-
+    [SerializeField] PlayerController player;
     [SerializeField]
     private GameObject _roundBomb;
     [SerializeField]
@@ -21,10 +21,11 @@ public class BombPlanter : MonoBehaviour
 
 
     private void OnEnable() {
-        _hasBomb = true;
+        _hasBomb = false;
     }
 
     private void Start() {
+        player = GetComponent<PlayerController>();
         ds = GetComponent<DualShock4Input>();
     }
 
@@ -37,7 +38,7 @@ public class BombPlanter : MonoBehaviour
     }
 
     public void PlantABomb() {
-        if (_hasBomb) {
+        if (_hasBomb && transform.position == player._myPos) {
             if (ds.GetButtonDown(ControlCode.Circle)) {
                 // Plant Round Bomb
                  SetBomb(_playerType, _roundBomb);

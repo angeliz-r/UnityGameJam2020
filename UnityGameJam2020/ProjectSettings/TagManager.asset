@@ -15,6 +15,7 @@ TagManager:
   - NotWalkable
   - RoundText
   - Bomb
+  - ActualBomb
   layers:
   - Default
   - TransparentFX

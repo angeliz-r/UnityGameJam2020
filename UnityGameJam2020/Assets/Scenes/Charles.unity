@@ -198,6 +198,7 @@ MonoBehaviour:
     type: 3}
   brownCell: {fileID: 1178876005947394784, guid: 743b9acf992f65c4382dd6e91a09f61a,
     type: 3}
+  bomb: {fileID: 4432649453660198860, guid: f1ab183bad20a9949aefde88e8cc33ab, type: 3}
   block: {fileID: 529818338810650358, guid: bbbbf8a61cb0f9d4396ce1c3f88f434c, type: 3}
   max: {fileID: 46409774}
 --- !u!1 &1090254996

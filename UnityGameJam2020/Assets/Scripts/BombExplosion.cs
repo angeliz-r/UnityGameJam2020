@@ -19,13 +19,17 @@ public class BombExplosion : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.CompareTag("Plant"))
+        if (collision.CompareTag("Plant"))
         {
             if (_type != collision.GetComponent<Plants>().myPlant)
             {
                 collision.transform.parent.GetComponent<Collider2D>().enabled = true;
                 Destroy(collision.gameObject);
             }
+        }
+        if (collision.CompareTag("Player"))
+        {
+            collision.GetComponent<PlayerController>().stunValue = 2f;
         }
     }
 

@@ -5,17 +5,21 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
-    private Vector3 _myPos;
+    public Vector3 _myPos;
     private DualShock4Input _ds;
     public CheckCell[] checker;
     public GameObject plant;
+    public float stunValue;
     private bool _left, _right, _up, _down;
     public Transform min, max;
+    public GameObject bomb;
     private Vector2 _faceDir, _dir;
+    private Vector3 _bombDir;
     RaycastHit2D hit;
     public event Action EventPlant = () => { };
     private void Start()
     {
+        stunValue = 0;
         _ds = GetComponent<DualShock4Input>();
         _myPos = transform.position;
     }
@@ -26,11 +30,19 @@ public class PlayerController : MonoBehaviour
         hit = Physics2D.Raycast(transform.position, _faceDir, 1.0f, LayerMask.GetMask("Plantable"));
         if ((Input.GetKeyDown(KeyCode.Space) || _ds.GetButtonDown(ControlCode.X))&& transform.position == _myPos)
             Plant();
+        if (stunValue > 0)
+            StunDuration();
     }
 
     private void FixedUpdate()
     {
+        if(stunValue <= 0)
         Move();
+    }
+
+    void StunDuration()
+    {
+        stunValue -= Time.deltaTime;
     }
     public void Plant()
     {
@@ -48,6 +60,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void Push()
+    {
+
+    }
     private void Move()
     {
         _up = checker[0].canMove;

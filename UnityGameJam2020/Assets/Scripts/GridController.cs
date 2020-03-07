@@ -6,10 +6,13 @@ public class GridController : MonoBehaviour
 {
     public GameObject greenCell;
     public GameObject brownCell;
+    public GameObject bomb;
     private GameObject[] _grid = new GameObject[81];
     private GameObject[] _plant = new GameObject[16];
     public GameObject block;
     private int _gridCount, _plantCount;
+    private Vector2 _bombPos;
+    private bool _hasBomb = false;
     public Transform max;
 
     private void Start()
@@ -25,7 +28,28 @@ public class GridController : MonoBehaviour
             SevenBySeven();
         if (Input.GetKey(KeyCode.Alpha5))
             FiveByFive();
+        if(!_hasBomb)
+        {
+            StartCoroutine(CreateBomb());
+        }
+    }
 
+    IEnumerator CreateBomb()
+    {
+        _hasBomb = true;
+        yield return new WaitForSeconds(Random.Range(3f, 5f));
+        CheckBombPosition();
+        GameObject obj = Instantiate(bomb, _bombPos, Quaternion.identity);
+        _hasBomb = false;
+    }
+
+    void CheckBombPosition()
+    {
+        int x = Random.Range(0, 9);
+        int y = Random.Range(0, 9);
+        _bombPos = new Vector2(x, y);
+        if (_bombPos.x % 2 == 1 && _bombPos.y % 2 == 1)
+            CheckBombPosition();
     }
 
     void CreateGrid()

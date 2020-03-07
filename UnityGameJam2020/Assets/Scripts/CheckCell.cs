@@ -4,27 +4,28 @@ using UnityEngine;
 
 public class CheckCell : MonoBehaviour
 {
+    private PlayerController playerPC;
     public bool canMove;
     private void Start()
     {
-        PlayerController playerPC = FindObjectOfType<PlayerController>(); 
+        playerPC = FindObjectOfType<PlayerController>();
         canMove = true;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("NotWalkable") || collision.CompareTag("Player"))
+        if (collision.CompareTag("NotWalkable"))
         {
             canMove = false;
+        }
+        if (collision.CompareTag("ActualBomb"))
+        {
+            playerPC.bomb = collision.transform.gameObject;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("NotWalkable") || collision.CompareTag("Player"))
-        {
-            canMove = true;
-        }
-        else if (collision.CompareTag("NotWalkable") && collision.CompareTag("Player"))
+        if (collision.CompareTag("NotWalkable"))
         {
             canMove = true;
         }
