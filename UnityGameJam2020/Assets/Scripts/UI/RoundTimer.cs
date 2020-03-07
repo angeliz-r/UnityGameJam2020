@@ -12,6 +12,9 @@ public class RoundTimer : MonoBehaviour
     private Image _fillBar;
     private RoundScoring _roundScoring;
     private RoundTextDisplay _roundDisplay;
+
+    public event Action RoundStart = () => { };
+
     private void Awake()
     {
         _roundScoring = GameObject.FindGameObjectWithTag("roundScorer").GetComponent<RoundScoring>();
@@ -23,7 +26,7 @@ public class RoundTimer : MonoBehaviour
 
     private void Start()
     {
-        GameManager.current.runUpdate += TimerCheck;
+        //GameManager.current.runUpdate += TimerCheck;
         RoundManager.current.runStartGameFunct += TimerStart;
     }
 
@@ -35,6 +38,7 @@ public class RoundTimer : MonoBehaviour
     {
         if (_reducedTime <= 0)
         {
+            RoundStart();
             _roundDisplay.DisplayRoundEnd();
             if (_roundScoring.roundNum < 3)
             {
@@ -71,7 +75,7 @@ public class RoundTimer : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameManager.current.runUpdate -= TimerCheck;
+        //GameManager.current.runUpdate -= TimerCheck;
         RoundManager.current.runStartGameFunct -= TimerStart;
     }
 }
