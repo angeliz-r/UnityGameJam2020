@@ -21,7 +21,7 @@ public class RoundTextDisplay : MonoBehaviour
 
     public IEnumerator MoveRound()
     {
-        LeanTween.moveX(_roundObj, 400, 0.5f).setEaseInOutCubic();
+        LeanTween.moveX(_roundObj, 500, 0.5f).setEaseInOutCubic();
         yield return new WaitForSeconds(2f);
         LeanTween.moveX(_roundObj, 1500, 0.5f).setEaseInOutCubic();
         StopCoroutine(MoveRound());
