@@ -11,7 +11,7 @@ public class CheckCell : MonoBehaviour
         canMove = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("NotWalkable") || collision.CompareTag("Player"))
         {
@@ -21,6 +21,10 @@ public class CheckCell : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("NotWalkable") || collision.CompareTag("Player"))
+        {
+            canMove = true;
+        }
+        else if (collision.CompareTag("NotWalkable") && collision.CompareTag("Player"))
         {
             canMove = true;
         }
