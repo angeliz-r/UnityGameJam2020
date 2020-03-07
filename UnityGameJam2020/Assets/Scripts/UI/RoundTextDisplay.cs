@@ -22,16 +22,16 @@ public class RoundTextDisplay : MonoBehaviour
 
     public IEnumerator MoveRound()
     {
-        LeanTween.moveX(_roundObj, 500, 0.5f).setEaseInOutCubic();
+        LeanTween.moveX(_roundObj, Screen.width / 2, 0.5f).setEaseInOutCubic();
         yield return new WaitForSeconds(2f);
-        LeanTween.moveX(_roundObj, 1500, 0.5f).setEaseInOutCubic();
+        LeanTween.moveX(_roundObj, Screen.width * 2, 0.5f).setEaseInOutCubic();
         StopCoroutine(MoveRound());
     }
     public IEnumerator MoveTutorial()
     {
-        LeanTween.moveX(_tutorial, 400, 0.5f).setEaseInOutCubic();
+        LeanTween.moveX(_tutorial, Screen.width/2, 0.5f).setEaseInOutCubic();
         yield return new WaitForSeconds(2f);
-        LeanTween.moveX(_tutorial, 1500, 0.5f).setEaseInOutCubic();
+        LeanTween.moveX(_tutorial, Screen.width*2, 0.5f).setEaseInOutCubic();
         StopCoroutine(MoveTutorial());
     }
 
@@ -54,5 +54,6 @@ public class RoundTextDisplay : MonoBehaviour
     {
         StartCoroutine(MoveRound());
         _roundText.text = "TIME'S UP!";
+        _tutorialText.text = "";
     }
 }
