@@ -17,11 +17,15 @@ public class PlayerController : MonoBehaviour
     private Vector3 _bombDir, _bombDes;
     RaycastHit2D hit;
     public event Action EventPlant = () => { };
+    private GameScoring _gScore;
+
+
     private void Start()
     {
         stunValue = 0;
         _ds = GetComponent<DualShock4Input>();
         _myPos = transform.position;
+        _gScore = FindObjectOfType<GameScoring>();
     }
 
     private void Update()
@@ -60,6 +64,7 @@ public class PlayerController : MonoBehaviour
             {
                 GameObject obj = Instantiate(plant, _dir, Quaternion.identity);
                 obj.transform.parent = hit.transform;
+                _gScore.AddLiveScore();
                 EventPlant();
             }
         }
