@@ -928,6 +928,11 @@ PrefabInstance:
       propertyPath: natureScore
       value: 
       objectReference: {fileID: 1633749993}
+    - target: {fileID: 47013196118878968, guid: a1569ffc3457d3d4593fee8e85cb6050,
+        type: 3}
+      propertyPath: roundTimer
+      value: 
+      objectReference: {fileID: 5628963794920245456}
     - target: {fileID: 47013196118878969, guid: a1569ffc3457d3d4593fee8e85cb6050,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1779,6 +1784,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65ee56f6ae640974c8961bf841217a10, type: 3}
+--- !u!114 &5628963794920245456 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5628963793832603250, guid: 65ee56f6ae640974c8961bf841217a10,
+    type: 3}
+  m_PrefabInstance: {fileID: 5628963794920245455}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16d35f60d8d038a499e53beb6a19b38b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8211635296721870933
 PrefabInstance:
   m_ObjectHideFlags: 0
