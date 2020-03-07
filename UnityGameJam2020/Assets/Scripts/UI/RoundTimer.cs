@@ -12,6 +12,7 @@ public class RoundTimer : MonoBehaviour
     private Image _fillBar;
     private RoundScoring _roundScoring;
     private RoundTextDisplay _roundDisplay;
+    private GridController _grid;
 
     public event Action RoundStart = () => { };
 
@@ -24,6 +25,7 @@ public class RoundTimer : MonoBehaviour
         _fillBar = this.transform.Find("TimerFill").GetComponent<Image>();
         _roundDisplay = GameObject.FindGameObjectWithTag("RoundText").GetComponent<RoundTextDisplay>();
         _reducedTime = timerTime;
+        _grid = FindObjectOfType<GridController>();
     }
 
     private void Start()
@@ -40,29 +42,29 @@ public class RoundTimer : MonoBehaviour
             //show round number display
             _roundDisplay.DisplayRoundNumber();
             //smaller map
-            RoundStart();
+            // RoundStart();
         }
     }
     public void TimerCheck()
     {
         if (_reducedTime <= 0)
         {
-            _roundDisplay.DisplayRoundEnd();
 
-            if (_roundScoring.roundNum < 2)
+            _roundScoring.CompareScores();
+            if (_roundScoring.roundNum < 3)
             {
+                _roundDisplay.DisplayRoundEnd();
                 StopCoroutine(StartTurnTimer());
-                _roundScoring.CompareScores();
                 //reset number & restart timer
                 _reducedTime = timerTime;
+                _grid.OnRoundChange();
                 TimerStart();
             }
-            else if (_roundScoring.roundNum >= 2)
+            else if (_roundScoring.roundNum == 3)
             {
                 //compare scores w each other
                 if (!doOnce)
                 {
-                    _roundScoring.CompareScores();
                     //count the amount of wins once rounds are over
                     _roundScoring.CountWins();
                     doOnce = true;

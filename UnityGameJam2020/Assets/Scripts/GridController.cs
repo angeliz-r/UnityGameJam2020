@@ -104,10 +104,10 @@ public class GridController : MonoBehaviour
         }
     }
 
-    void OnRoundChange() {
-        if (_rScore.roundNum == 2) {
+    public void OnRoundChange() {
+        if (_rScore.roundNum == 1) {
             SevenBySeven();
-        } else if (_rScore.roundNum == 3) {
+        } else if (_rScore.roundNum >= 2) {
             FiveByFive();
         }
     }

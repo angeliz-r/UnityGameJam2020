@@ -50,6 +50,19 @@ public class RoundScoring : MonoBehaviour
 
     public void CountWins()
     {
+        if (manScore.ReturnTotalScore() > natureScore.ReturnTotalScore())
+        {
+            _manWins++;
+
+        }
+        else if (manScore.ReturnTotalScore() == natureScore.ReturnTotalScore())
+        {
+
+        }
+        else
+        {
+            _natureWins++;
+        }
         if (_manWins >= 2)
         {
             DisplayManWin();
@@ -67,6 +80,7 @@ public class RoundScoring : MonoBehaviour
         winnerName.text = "Man Wins!";
         winnerScore.text = "TOTAL SCORE: " + manScore.AddTotalGameScore().ToString();
         winnerPanel.SetActive(true);
+        StopAllCoroutines();
     }
 
     public void DisplayNatureWin()
@@ -76,6 +90,7 @@ public class RoundScoring : MonoBehaviour
         winnerName.text = "Nature Wins!";
         winnerScore.text = "TOTAL SCORE: " + natureScore.AddTotalGameScore().ToString();
         winnerPanel.SetActive(true);
+        StopAllCoroutines();
     }
 
     public int ReturnManWins()
