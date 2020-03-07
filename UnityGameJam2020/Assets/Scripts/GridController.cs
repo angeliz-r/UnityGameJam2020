@@ -53,8 +53,8 @@ public class GridController : MonoBehaviour
 
     void CheckBombPosition()
     {
-        int x = UnityEngine.Random.Range(0, 9);
-        int y = UnityEngine.Random.Range(0, 9);
+        int x = UnityEngine.Random.Range(0, Mathf.FloorToInt(max.position.x) + 1);
+        int y = UnityEngine.Random.Range(0, Mathf.FloorToInt(max.position.y) + 1);
         _bombPos = new Vector2(x, y);
         if (_bombPos.x % 2 == 1 && _bombPos.y % 2 == 1)
             CheckBombPosition();

@@ -19,6 +19,7 @@ public class Plants : MonoBehaviour
     }
     void DestroyPlants()
     {
+        grid.EventWipePlants -= DestroyPlants;
         Destroy(this.gameObject);
     }
 }
