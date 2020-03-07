@@ -13,6 +13,9 @@ public class RoundManager : MonoBehaviour
     {
         StartGame();
     }
+
+    public event Action RoundStart = () => { };
+
     public event Action runStartGameFunct;
     public void StartGame()
     {
