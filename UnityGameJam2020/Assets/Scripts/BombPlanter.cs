@@ -36,18 +36,18 @@ public class BombPlanter : MonoBehaviour
         if (_hasBomb) {
             if (ds.GetButtonDown(ControlCode.Circle)) {
                 // Plant Round Bomb
-                // SetBomb(_playerType, _roundBomb);
+                 SetBomb(_playerType, _roundBomb);
             }
             if (ds.GetButtonDown(ControlCode.Triangle)) {
                 // Plant Cross Bomb
-                // SetBomb(_playerType, _crossBomb);
+                 SetBomb(_playerType, _crossBomb);
             }
         }
     }
 
     private void SetBomb(PlayerType type, GameObject bomb) {
         var b = Instantiate(bomb, transform.position, Quaternion.identity);
-        // b.GetComponent<Bomb>().SetType(type)
+        b.GetComponent<Bomb>().SetType(type);
         _hasBomb = false;
     }
 }
