@@ -9,10 +9,8 @@ public class GameScoring : MonoBehaviour
     private RoundScoring _roundScoring;
 
     private float _totalScore;
-    private float _totalGameScore;
 
     private float _finalTotalScore;
-    private int index = 0;
     void Awake()
     {
         _roundScoring = GameObject.FindGameObjectWithTag("roundScorer").GetComponent<RoundScoring>();
@@ -24,8 +22,8 @@ public class GameScoring : MonoBehaviour
     public void SaveCurrentScore()
     {       
         //save in an array to add them all together later
-        index = _roundScoring.roundNum;
-        _finalTotalScore += _totalScore;
+        _finalTotalScore = _finalTotalScore + _totalScore;
+        _totalScore = 0;
     }
     public void UpdateScoreDisplay()
     {

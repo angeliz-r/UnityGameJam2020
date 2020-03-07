@@ -25,14 +25,12 @@ public class RoundScoring : MonoBehaviour
     }
     private void Start()
     {
-        RoundManager.current.runEndGameFunct += CompareScores;
+       // RoundManager.current.runEndGameFunct += CompareScores;
     }
     public void CompareScores()
     {
         if (manScore.ReturnTotalScore() > natureScore.ReturnTotalScore())
         {
-            manScore.SaveCurrentScore();
-            natureScore.SaveCurrentScore();
             _manWins++;
             roundNum++;
 
@@ -43,15 +41,28 @@ public class RoundScoring : MonoBehaviour
         }
         else
         {
-            natureScore.SaveCurrentScore();
-            manScore.SaveCurrentScore();
             _natureWins++;
             roundNum++;
         }
+        manScore.SaveCurrentScore();
+        natureScore.SaveCurrentScore();
     }
 
     public void CountWins()
     {
+        if (manScore.ReturnTotalScore() > natureScore.ReturnTotalScore())
+        {
+            _manWins++;
+
+        }
+        else if (manScore.ReturnTotalScore() == natureScore.ReturnTotalScore())
+        {
+
+        }
+        else
+        {
+            _natureWins++;
+        }
         if (_manWins >= 2)
         {
             DisplayManWin();
@@ -69,6 +80,7 @@ public class RoundScoring : MonoBehaviour
         winnerName.text = "Man Wins!";
         winnerScore.text = "TOTAL SCORE: " + manScore.AddTotalGameScore().ToString();
         winnerPanel.SetActive(true);
+        StopAllCoroutines();
     }
 
     public void DisplayNatureWin()
@@ -78,6 +90,7 @@ public class RoundScoring : MonoBehaviour
         winnerName.text = "Nature Wins!";
         winnerScore.text = "TOTAL SCORE: " + natureScore.AddTotalGameScore().ToString();
         winnerPanel.SetActive(true);
+        StopAllCoroutines();
     }
 
     public int ReturnManWins()
@@ -92,7 +105,7 @@ public class RoundScoring : MonoBehaviour
 
     private void OnDestroy()
     {
-        RoundManager.current.runEndGameFunct -= CompareScores;
+       // RoundManager.current.runEndGameFunct -= CompareScores;
     }
 }
 

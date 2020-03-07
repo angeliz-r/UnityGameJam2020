@@ -12,9 +12,12 @@ public class RoundTimer : MonoBehaviour
     private Image _fillBar;
     private RoundScoring _roundScoring;
     private RoundTextDisplay _roundDisplay;
+    private GridController _grid;
 
     public event Action RoundStart = () => { };
 
+    private bool doOnce;
+    private bool doOnceAgain;
     private void Awake()
     {
         _roundScoring = GameObject.FindGameObjectWithTag("roundScorer").GetComponent<RoundScoring>();
@@ -22,6 +25,7 @@ public class RoundTimer : MonoBehaviour
         _fillBar = this.transform.Find("TimerFill").GetComponent<Image>();
         _roundDisplay = GameObject.FindGameObjectWithTag("RoundText").GetComponent<RoundTextDisplay>();
         _reducedTime = timerTime;
+        _grid = FindObjectOfType<GridController>();
     }
 
     private void Start()
@@ -33,32 +37,38 @@ public class RoundTimer : MonoBehaviour
     public void TimerStart()
     {
         StartCoroutine(StartTurnTimer());
+        if (_roundScoring.roundNum < 2 && _roundScoring.roundNum != 0)
+        {
+            //show round number display
+            _roundDisplay.DisplayRoundNumber();
+            //smaller map
+            // RoundStart();
+        }
     }
     public void TimerCheck()
     {
         if (_reducedTime <= 0)
         {
-            _roundDisplay.DisplayRoundEnd();
+
+            _roundScoring.CompareScores();
             if (_roundScoring.roundNum < 3)
             {
-                RoundStart();
-                //compare scores & stop timer
-                _roundScoring.CompareScores();
-                //stop
+                _roundDisplay.DisplayRoundEnd();
                 StopCoroutine(StartTurnTimer());
-                //show round number display
-                _roundDisplay.DisplayRoundNumber();
-
                 //reset number & restart timer
                 _reducedTime = timerTime;
+                _grid.OnRoundChange();
                 TimerStart();
             }
-            else if (_roundScoring.roundNum >= 3)
+            else if (_roundScoring.roundNum == 3)
             {
                 //compare scores w each other
-                _roundScoring.CompareScores();
-                //count the amount of wins once rounds are over
-                _roundScoring.CountWins();
+                if (!doOnce)
+                {
+                    //count the amount of wins once rounds are over
+                    _roundScoring.CountWins();
+                    doOnce = true;
+                }
                 //stop timer completely
                 StopCoroutine(StartTurnTimer());
             }

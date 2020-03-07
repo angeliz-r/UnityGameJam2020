@@ -8,11 +8,14 @@ public class RoundTextDisplay : MonoBehaviour
     [SerializeField]private TextMeshProUGUI _roundText;
     [SerializeField] private GameObject _tutorial;
     [SerializeField] private TextMeshProUGUI _tutorialText;
+
+    private AudioController _audio;
     private RoundScoring _roundScoring;
     private void Awake()
     {
         _roundText = this.GetComponent<TextMeshProUGUI>();
         _roundScoring = GameObject.FindGameObjectWithTag("roundScorer").GetComponent<RoundScoring>();
+        _audio = GetComponent<AudioController>();
     }
 
     private void Start()
@@ -55,5 +58,6 @@ public class RoundTextDisplay : MonoBehaviour
         StartCoroutine(MoveRound());
         _roundText.text = "TIME'S UP!";
         _tutorialText.text = "";
+        _audio.PlaySoundEffect(SFXCollection.time_up_sfx);
     }
 }

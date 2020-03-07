@@ -47,6 +47,8 @@ MonoBehaviour:
     type: 3}
   brownCell: {fileID: 1178876005947394784, guid: 743b9acf992f65c4382dd6e91a09f61a,
     type: 3}
+  player1: {fileID: 900806743099100481}
+  player2: {fileID: 7956211401684146950}
   bomb: {fileID: 4432649453660198860, guid: f1ab183bad20a9949aefde88e8cc33ab, type: 3}
   block: {fileID: 529818338810650358, guid: bbbbf8a61cb0f9d4396ce1c3f88f434c, type: 3}
   max: {fileID: 7956211401368169215}
@@ -158,7 +160,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -297,6 +299,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1615924326561535883}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7956211401684146950 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8648827186781293709, guid: 6edaeca5e3fe9b144a7fd80eb6dfb02d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1615924326561535883}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a27ecefb6d061544ae7c5a79580e1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6857345949047918806
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -382,3 +396,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6857345949047918806}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &900806743099100481 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6028737956670725527, guid: 845bc2d35f2b8654dbe4dd3893711d43,
+    type: 3}
+  m_PrefabInstance: {fileID: 6857345949047918806}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a27ecefb6d061544ae7c5a79580e1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

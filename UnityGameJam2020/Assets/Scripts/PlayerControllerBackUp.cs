@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerBackUp: MonoBehaviour
 {
     public Vector3 _myPos;
     private DualShock4Input _ds;
