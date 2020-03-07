@@ -20,13 +20,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Move();
         Debug.DrawLine(transform.position, _dir, Color.red);
         hit = Physics2D.Raycast(transform.position, _faceDir, 1.0f, LayerMask.GetMask("Plantable"));
         if (Input.GetKeyDown(KeyCode.Space) && transform.position == _myPos)
             Plant();
     }
 
+    private void FixedUpdate()
+    {
+        Move();
+    }
     public void Plant()
     {
         if (hit.collider != null)
