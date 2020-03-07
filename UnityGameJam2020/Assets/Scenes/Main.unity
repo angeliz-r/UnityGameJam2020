@@ -312,7 +312,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301516262}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
@@ -918,6 +918,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1140394050}
     m_Modifications:
+    - target: {fileID: 47013195404772642, guid: a1569ffc3457d3d4593fee8e85cb6050,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 47013195860249162, guid: a1569ffc3457d3d4593fee8e85cb6050,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 47013195895422011, guid: a1569ffc3457d3d4593fee8e85cb6050,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.21807075
+      objectReference: {fileID: 0}
+    - target: {fileID: 47013195895422011, guid: a1569ffc3457d3d4593fee8e85cb6050,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 47013195895422011, guid: a1569ffc3457d3d4593fee8e85cb6050,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 47013196118878968, guid: a1569ffc3457d3d4593fee8e85cb6050,
         type: 3}
       propertyPath: manScore
@@ -1042,6 +1067,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RoundContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 47013196338377765, guid: a1569ffc3457d3d4593fee8e85cb6050,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 47013197283509074, guid: a1569ffc3457d3d4593fee8e85cb6050,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3137715674903048549, guid: a1569ffc3457d3d4593fee8e85cb6050,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568852990909890108, guid: a1569ffc3457d3d4593fee8e85cb6050,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1569ffc3457d3d4593fee8e85cb6050, type: 3}

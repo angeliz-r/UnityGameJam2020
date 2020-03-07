@@ -19,8 +19,12 @@ public class Bomb : MonoBehaviour
 
     [SerializeField]private PlayerType _playerType;
     private AudioController _audio;
+    private SpriteRenderer _sprRend;
+
     private void Start() {
         _audio = GetComponent<AudioController>();
+        _sprRend = GetComponent<SpriteRenderer>();
+        _sprRend.enabled = true;
         Invoke("Explode", _explodeTime);
 
     }
@@ -77,6 +81,7 @@ public class Bomb : MonoBehaviour
             b.GetComponent<BombExplosion>().SetType(_playerType);
             b.GetComponent<BombExplosion>().SetBomb(BombType.ROUND);
         }
+        _sprRend.enabled = false;
         Invoke("DestroyBomb", 2);
 
     }
