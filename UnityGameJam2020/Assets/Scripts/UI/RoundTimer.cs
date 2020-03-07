@@ -38,17 +38,29 @@ public class RoundTimer : MonoBehaviour
     {
         if (_reducedTime <= 0)
         {
-            RoundStart();
+            
             _roundDisplay.DisplayRoundEnd();
             if (_roundScoring.roundNum < 3)
             {
+                //compare scores & stop timer
+                _roundScoring.CompareScores();
+                //stop
                 StopCoroutine(StartTurnTimer());
+                //show round number display
                 _roundDisplay.DisplayRoundNumber();
+
+                //reset number & restart timer
                 _reducedTime = timerTime;
                 TimerStart();
+                RoundStart();
             }
             else if (_roundScoring.roundNum >= 3)
             {
+                //compare scores w each other
+                _roundScoring.CompareScores();
+                //count the amount of wins once rounds are over
+                _roundScoring.CountWins();
+                //stop timer completely
                 StopCoroutine(StartTurnTimer());
             }
         }

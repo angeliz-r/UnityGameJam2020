@@ -18,7 +18,6 @@ public class RoundTextDisplay : MonoBehaviour
     private void Start()
     {
         RoundManager.current.runStartGameFunct += DisplayRoundNumber;
-        DisplayRoundNumber();
     }
 
     public IEnumerator MoveRound()
