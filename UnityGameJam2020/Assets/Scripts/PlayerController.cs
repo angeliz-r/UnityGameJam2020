@@ -34,13 +34,18 @@ public class PlayerController : MonoBehaviour
     {
         Debug.DrawLine(transform.position, _dir, Color.red);
         hit = Physics2D.Raycast(transform.position, _faceDir, 1.0f, LayerMask.GetMask("Plantable"));
-        if ((Input.GetKeyDown(KeyCode.Space) || _ds.GetButtonDown(ControlCode.X))&& transform.position == _myPos)
-            Plant();
         if (stunValue > 0)
+        {
             StunDuration();
-        if(Input.GetKeyDown(KeyCode.F) || _ds.GetButtonDown(ControlCode.Square))
-        Push();
-
+        }
+        else
+        {
+            if ((Input.GetKeyDown(KeyCode.Space) || _ds.GetButtonDown(ControlCode.X)) && transform.position == _myPos)
+                Plant();
+            if (Input.GetKeyDown(KeyCode.F) || _ds.GetButtonDown(ControlCode.Square))
+                Push();
+        }
+        
     }
 
     private void FixedUpdate()
