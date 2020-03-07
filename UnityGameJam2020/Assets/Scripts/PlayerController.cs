@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator _anim;
 
-    private bool _isStunned;
+    private bool _canPlayStunned;
     private void Start()
     {
         stunValue = 0;
@@ -62,7 +62,6 @@ public class PlayerController : MonoBehaviour
         if(stunValue <= 0)
         {
             Move();
-            _isStunned = false;
         }
 
         if (bomb != null)
@@ -73,17 +72,20 @@ public class PlayerController : MonoBehaviour
 
     void PlayStunSFX()
     {
-        if (_isStunned)
+        if (_canPlayStunned && stunValue > 0)
         {
             _audio.PlaySoundEffect(SFXCollection.stun);
-            _isStunned = false;
+            _canPlayStunned = false;
         }
     }
     void StunDuration()
     {
         stunValue -= Time.deltaTime;
-        _isStunned = true;
+        if (stunValue <= 0) {
+            _canPlayStunned = true;
+        }
     }
+
     public void Plant()
     {
         if (hit.collider != null)
