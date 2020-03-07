@@ -4,9 +4,14 @@ public class BombExplosion : MonoBehaviour
 {
     private PlayerType _type;
     private Bomb.BombType _bombType;
+    private GameScoring _gScore;
 
     private void OnEnable() {
         Invoke("DestroySelf", 1);
+    }
+
+    private void Start() {
+        _gScore = GetComponent<GameScoring>();
     }
 
     private void Update() {
@@ -24,6 +29,7 @@ public class BombExplosion : MonoBehaviour
             if (_type != collision.GetComponent<Plants>().myPlant)
             {
                 collision.transform.parent.GetComponent<Collider2D>().enabled = true;
+                _gScore.DestroyLiveScore();
                 Destroy(collision.gameObject);
             }
         }
