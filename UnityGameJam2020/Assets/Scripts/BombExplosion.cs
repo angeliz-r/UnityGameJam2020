@@ -11,7 +11,7 @@ public class BombExplosion : MonoBehaviour
     }
 
     private void Start() {
-        _rScore = GetComponent<RoundScoring>();
+        _rScore = FindObjectOfType<RoundScoring>();
     }
 
     private void Update() {
@@ -30,7 +30,6 @@ public class BombExplosion : MonoBehaviour
             if (_type != type)
             {
                 collision.transform.parent.GetComponent<Collider2D>().enabled = true;
-
                 if (type == PlayerType.MAN)
                 {
                     _rScore.manScore.DestroyLiveScore();
@@ -39,7 +38,6 @@ public class BombExplosion : MonoBehaviour
                 { 
                     _rScore.natureScore.DestroyLiveScore();
                 }
-
                 Destroy(collision.gameObject);
             }
         }
