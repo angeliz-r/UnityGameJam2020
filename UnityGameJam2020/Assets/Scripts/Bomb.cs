@@ -10,6 +10,7 @@ public class Bomb : MonoBehaviour
     [Header("Attributes")]
     [SerializeField] BombType _bombType;
     [SerializeField] float _explodeTime;
+   
 
     [Header("Explosion GameObjects")]
     [SerializeField] GameObject _crossProjectile;
@@ -18,8 +19,13 @@ public class Bomb : MonoBehaviour
 
     [SerializeField]private PlayerType _playerType;
 
+  
+
     private void Start() {
         Invoke("Explode", _explodeTime);
+        
+
+       
     }
 
     public void SetType(PlayerType t) {

@@ -2,9 +2,15 @@
 
 public class BombExplosion : MonoBehaviour
 {
+    [SerializeField] RuntimeAnimatorController _crossManAnim;
+    [SerializeField] RuntimeAnimatorController _roundManAnim;
+    [SerializeField] RuntimeAnimatorController _crossNatureAnim;
+    [SerializeField] RuntimeAnimatorController _roundNatureAnim;
+
     private PlayerType _type;
     private Bomb.BombType _bombType;
     private RoundScoring _rScore;
+    private Animator _myAnim;
 
     private void OnEnable() {
         Invoke("DestroySelf", 1);
@@ -12,6 +18,16 @@ public class BombExplosion : MonoBehaviour
 
     private void Start() {
         _rScore = FindObjectOfType<RoundScoring>();
+        _myAnim = GetComponent<Animator>();
+
+        if (_bombType == Bomb.BombType.CROSS && _type == PlayerType.MAN)
+            _myAnim.runtimeAnimatorController = _crossManAnim;
+        else if (_bombType == Bomb.BombType.CROSS && _type == PlayerType.NATURE)
+            _myAnim.runtimeAnimatorController = _crossNatureAnim;
+        else if (_bombType == Bomb.BombType.ROUND && _type == PlayerType.MAN)
+            _myAnim.runtimeAnimatorController = _roundManAnim;
+        else if (_bombType == Bomb.BombType.ROUND && _type == PlayerType.NATURE)
+            _myAnim.runtimeAnimatorController = _roundNatureAnim;
     }
 
     private void FixedUpdate() {
