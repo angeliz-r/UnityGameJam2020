@@ -27,11 +27,20 @@ public class Bomb : MonoBehaviour
 
     void Explode() {
         if (_bombType == BombType.CROSS) {
-            // Spawn projectile in 4 directions that fly there.
+            for (int i = 0; i < 4; i++) {
+                var b = Instantiate(_crossProjectile, transform.position, Quaternion.identity);
+                var transRot = b.transform;
+                transRot.localEulerAngles = new Vector3(0, 0, (i*90));
+                b.transform.localEulerAngles = transRot.localEulerAngles;
+                b.GetComponent<BombExplosion>().SetBomb(BombType.CROSS);
+                b.GetComponent<BombExplosion>().SetType(_playerType);
+            }  
         }
 
         if (_bombType == BombType.ROUND) {
-            // Spawn a large 3x3 area explosion
+            var b = Instantiate(_roundProjectile, transform.position, Quaternion.identity);
+            b.GetComponent<BombExplosion>().SetType(_playerType);
+            b.GetComponent<BombExplosion>().SetBomb(BombType.ROUND);
         }
 
         Destroy(this.gameObject);
