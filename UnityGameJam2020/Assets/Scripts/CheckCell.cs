@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class CheckCell : MonoBehaviour
 {
-    private PlayerController playerPC;
     public bool canMove;
     private void Start()
     {
-        playerPC = FindObjectOfType<PlayerController>();
         canMove = true;
     }
 
@@ -20,12 +18,12 @@ public class CheckCell : MonoBehaviour
         }
         if (collision.CompareTag("ActualBomb"))
         {
-            playerPC.bomb = collision.transform.gameObject;
+            canMove = false;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("NotWalkable"))
+        if (collision.CompareTag("ActualBomb") || collision.CompareTag("NotWalkable"))
         {
             canMove = true;
         }

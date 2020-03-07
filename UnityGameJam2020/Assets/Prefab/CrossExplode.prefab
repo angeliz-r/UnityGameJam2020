@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9057688629433283539}
   - component: {fileID: 9057688629433283564}
   - component: {fileID: 8376086995181709117}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: CrossExplode
   m_TagString: Bomb
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4372081166208676698}
   - component: {fileID: 4372081166208676697}
   - component: {fileID: 1199538036}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CrossBomb
   m_TagString: ActualBomb
   m_Icon: {fileID: 0}

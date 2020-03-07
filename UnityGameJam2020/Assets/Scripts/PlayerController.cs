@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public Transform min, max;
     public GameObject bomb;
     private Vector2 _faceDir, _dir;
-    private Vector3 _bombDir;
+    private Vector3 _bombDir, _bombDes;
     RaycastHit2D hit;
     public event Action EventPlant = () => { };
     private void Start()
@@ -32,12 +32,19 @@ public class PlayerController : MonoBehaviour
             Plant();
         if (stunValue > 0)
             StunDuration();
+        if(Input.GetKeyDown(KeyCode.F) || _ds.GetButtonDown(ControlCode.Square))
+        Push();
+
     }
 
     private void FixedUpdate()
     {
         if(stunValue <= 0)
         Move();
+        if (bomb != null)
+        {
+            MoveBomb();
+        }
     }
 
     void StunDuration()
@@ -48,11 +55,9 @@ public class PlayerController : MonoBehaviour
     {
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.tag);
             if (hit.collider.CompareTag("Land")
                     && transform.position == _myPos)
             {
-                Debug.Log("PLANT");
                 GameObject obj = Instantiate(plant, _dir, Quaternion.identity);
                 obj.transform.parent = hit.transform;
                 EventPlant();
@@ -62,7 +67,28 @@ public class PlayerController : MonoBehaviour
 
     void Push()
     {
-
+        if (hit.collider != null)
+        {
+            if(hit.collider.CompareTag("ActualBomb") && transform.position == _myPos)
+            {
+                bomb = hit.collider.gameObject;
+                _bombDes = transform.position - bomb.transform.position;
+                _bombDes = bomb.transform.position - _bombDes;
+                if (_bombDes.x < min.position.x)
+                    _bombDes = new Vector3(min.position.x, _bombDes.y, _bombDes.z);
+                if (_bombDes.x > max.position.x)
+                    _bombDes = new Vector3(max.position.x, _bombDes.y, _bombDes.z);
+                if (_bombDes.y < min.position.y)
+                    _bombDes = new Vector3(_bombDes.x, min.position.y, _bombDes.z);
+                if (_bombDes.y > max.position.y)
+                    _bombDes = new Vector3(_bombDes.x, max.position.y, _bombDes.z);
+            }
+        }
+    }
+    void MoveBomb()
+    {
+        if (bomb.transform.position != _bombDes)
+            bomb.transform.position = Vector3.MoveTowards(bomb.transform.position, _bombDes, 0.1f);
     }
     private void Move()
     {
