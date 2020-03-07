@@ -55,8 +55,8 @@ public class RoundTextDisplay : MonoBehaviour
 
     public void DisplayRoundEnd()
     {
-        StartCoroutine(MoveRound());
-        _roundText.text = "TIME'S UP!";
+        //StartCoroutine(MoveRound());
+        _roundText.text = "";
         _tutorialText.text = "";
         _audio.PlaySoundEffect(SFXCollection.time_up_sfx);
     }

@@ -16,8 +16,8 @@ public class RoundTimer : MonoBehaviour
 
     public event Action RoundStart = () => { };
 
-    private bool doOnce;
-    private bool doOnceAgain;
+    public bool doOnce;
+
     private void Awake()
     {
         _roundScoring = GameObject.FindGameObjectWithTag("roundScorer").GetComponent<RoundScoring>();
@@ -32,35 +32,38 @@ public class RoundTimer : MonoBehaviour
     {
         GameManager.current.runUpdate += TimerCheck;
         RoundManager.current.runStartGameFunct += TimerStart;
+        TimerStart();
     }
 
     public void TimerStart()
     {
-        StartCoroutine(StartTurnTimer());
-        if (_roundScoring.roundNum < 2 && _roundScoring.roundNum != 0)
+        if (_roundScoring.roundNum <= 2 && _roundScoring.roundNum != 0)
         {
             //show round number display
             _roundDisplay.DisplayRoundNumber();
-            //smaller map
-            // RoundStart();
         }
+        if (_roundScoring.roundNum > 2)
+        {
+            _roundDisplay.DisplayRoundNumber();
+            _grid.OnRoundChange();
+        }
+        StartCoroutine(StartTurnTimer());
     }
     public void TimerCheck()
     {
         if (_reducedTime <= 0)
         {
-
+            _reducedTime = timerTime;
             _roundScoring.CompareScores();
             if (_roundScoring.roundNum < 3)
             {
                 _roundDisplay.DisplayRoundEnd();
                 StopCoroutine(StartTurnTimer());
-                //reset number & restart timer
-                _reducedTime = timerTime;
+
                 _grid.OnRoundChange();
                 TimerStart();
             }
-            else if (_roundScoring.roundNum == 3)
+            else if (_roundScoring.roundNum == 2)
             {
                 //compare scores w each other
                 if (!doOnce)
@@ -70,6 +73,17 @@ public class RoundTimer : MonoBehaviour
                     doOnce = true;
                 }
                 //stop timer completely
+                StopCoroutine(StartTurnTimer());
+            }
+            else if (_roundScoring.roundNum > 2)
+            {
+                _roundDisplay.DisplayRoundEnd();
+                if (!doOnce)
+                {
+                    //count the amount of wins once rounds are over
+                    _roundScoring.CountWins();
+                    doOnce = true;
+                }
                 StopCoroutine(StartTurnTimer());
             }
         }
