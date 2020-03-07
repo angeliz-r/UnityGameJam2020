@@ -15,11 +15,17 @@ public class GridController : MonoBehaviour
     private bool _hasBomb = false;
     public Transform max;
 
+    private RoundTimer _rTime;
+    private RoundScoring _rScore;
+
     private void Start()
     {
         CreateGrid();
         CreatePlantArea();
         CreateBlocks();
+        _rTime = FindObjectOfType<RoundTimer>();
+        _rScore = FindObjectOfType<RoundScoring>();
+        
     }
 
     private void Update()
@@ -95,6 +101,14 @@ public class GridController : MonoBehaviour
                     blocks.transform.parent = this.transform;
                 }
             }
+        }
+    }
+
+    void OnRoundChange() {
+        if (_rScore.roundNum == 2) {
+            SevenBySeven();
+        } else if (_rScore.roundNum == 3) {
+            FiveByFive();
         }
     }
 
