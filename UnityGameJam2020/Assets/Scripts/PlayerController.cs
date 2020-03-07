@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator _anim;
 
+    private bool _isStunned;
     private void Start()
     {
         stunValue = 0;
@@ -40,8 +41,8 @@ public class PlayerController : MonoBehaviour
         hit = Physics2D.Raycast(transform.position, _faceDir, 1.0f, LayerMask.GetMask("Plantable"));
         if (stunValue > 0)
         {
-            _audio.PlaySoundEffect(SFXCollection.stun);
             StunDuration();
+            PlayStunSFX();
         }
         else
         {
@@ -59,16 +60,29 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         if(stunValue <= 0)
-        Move();
+        {
+            Move();
+            _isStunned = false;
+        }
+
         if (bomb != null)
         {
             MoveBomb();
         }
     }
 
+    void PlayStunSFX()
+    {
+        if (_isStunned)
+        {
+            _audio.PlaySoundEffect(SFXCollection.stun);
+            _isStunned = false;
+        }
+    }
     void StunDuration()
     {
         stunValue -= Time.deltaTime;
+        _isStunned = true;
     }
     public void Plant()
     {

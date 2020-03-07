@@ -48,9 +48,17 @@ public class Bomb : MonoBehaviour
         {
             _audio.PlaySoundEffect(SFXCollection.earthquake_sfx);
         }
-
     }
+
+    //here in case im sabog
+    //IEnumerator PlaySFXFirst ()
+    //{
+    //    SelectAudio();
+    //    yield return new WaitForSeconds(1f);
+    //    StopCoroutine(PlaySFXFirst());
+    //}
     void Explode() {
+        //StartCoroutine(PlaySFXFirst());
         SelectAudio();
         if (_bombType == BombType.CROSS) {
             for (int i = 0; i < 4; i++) {
@@ -69,7 +77,12 @@ public class Bomb : MonoBehaviour
             b.GetComponent<BombExplosion>().SetType(_playerType);
             b.GetComponent<BombExplosion>().SetBomb(BombType.ROUND);
         }
+        Invoke("DestroyBomb", 2);
 
+    }
+
+    void DestroyBomb()
+    {
         Destroy(this.gameObject);
     }
 
