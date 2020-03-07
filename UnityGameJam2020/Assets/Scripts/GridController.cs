@@ -91,6 +91,7 @@ public class GridController : MonoBehaviour
             }
         }
         max.transform.position = new Vector2(6, 6);
+        FindObjectOfType<CameraBehaviour>().UpdateCameraFocus(7);
     }
 
     void FiveByFive()
@@ -110,5 +111,6 @@ public class GridController : MonoBehaviour
             }
         }
         max.transform.position = new Vector2(4, 4);
+        FindObjectOfType<CameraBehaviour>().UpdateCameraFocus(5);
     }
 }
