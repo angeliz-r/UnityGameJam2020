@@ -47,7 +47,10 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-
+    public void ResetPos()
+    {
+        _myPos = transform.position;
+    }
     private void FixedUpdate()
     {
         if(stunValue <= 0)

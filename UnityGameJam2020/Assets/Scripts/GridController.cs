@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class GridController : MonoBehaviour
 {
     public GameObject greenCell;
     public GameObject brownCell;
+    public BombPlanter player1, player2;
     public GameObject bomb;
     private GameObject[] _grid = new GameObject[81];
     private GameObject[] _plant = new GameObject[16];
@@ -14,7 +16,7 @@ public class GridController : MonoBehaviour
     private Vector2 _bombPos;
     private bool _hasBomb = false;
     public Transform max;
-
+    public event Action EventWipePlants = () => { };
     private RoundTimer _rTime;
     private RoundScoring _rScore;
 
@@ -43,7 +45,7 @@ public class GridController : MonoBehaviour
     IEnumerator CreateBomb()
     {
         _hasBomb = true;
-        yield return new WaitForSeconds(Random.Range(3f, 5f));
+        yield return new WaitForSeconds(UnityEngine.Random.Range(3f, 5f));
         CheckBombPosition();
         GameObject obj = Instantiate(bomb, _bombPos, Quaternion.identity);
         _hasBomb = false;
@@ -51,8 +53,8 @@ public class GridController : MonoBehaviour
 
     void CheckBombPosition()
     {
-        int x = Random.Range(0, 9);
-        int y = Random.Range(0, 9);
+        int x = UnityEngine.Random.Range(0, 9);
+        int y = UnityEngine.Random.Range(0, 9);
         _bombPos = new Vector2(x, y);
         if (_bombPos.x % 2 == 1 && _bombPos.y % 2 == 1)
             CheckBombPosition();
@@ -114,9 +116,9 @@ public class GridController : MonoBehaviour
 
     void SevenBySeven()
     {
-        for(int i = 0; i < _gridCount; ++i)
+        for (int i = 0; i < _gridCount; ++i)
         {
-            if(_grid[i].transform.position.x >= 7 || _grid[i].transform.position.y >= 7)
+            if (_grid[i].transform.position.x >= 7 || _grid[i].transform.position.y >= 7)
             {
                 _grid[i].SetActive(false);
             }
@@ -130,6 +132,17 @@ public class GridController : MonoBehaviour
         }
         max.transform.position = new Vector2(6, 6);
         FindObjectOfType<CameraBehaviour>().UpdateCameraFocus(7);
+        if (player1.playerType == PlayerType.NATURE)
+        {
+            player1.transform.position = transform.position;
+            player1.GetComponent<PlayerController>().ResetPos();
+        }
+        if (player2.playerType == PlayerType.MAN)
+        {
+            player2.transform.position = max.transform.position;
+            player2.GetComponent<PlayerController>().ResetPos();
+        }
+        EventWipePlants();
     }
 
     void FiveByFive()
@@ -150,5 +163,16 @@ public class GridController : MonoBehaviour
         }
         max.transform.position = new Vector2(4, 4);
         FindObjectOfType<CameraBehaviour>().UpdateCameraFocus(5);
+        if (player1.playerType == PlayerType.NATURE)
+        {
+            player1.transform.position = transform.position;
+            player1.GetComponent<PlayerController>().ResetPos();
+        }
+        if (player2.playerType == PlayerType.MAN)
+        {
+            player2.transform.position = max.transform.position;
+            player2.GetComponent<PlayerController>().ResetPos();
+        }
+        EventWipePlants();
     }
 }

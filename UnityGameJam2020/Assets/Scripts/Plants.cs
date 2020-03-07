@@ -5,4 +5,20 @@ using UnityEngine;
 public class Plants : MonoBehaviour
 {
     public PlayerType myPlant;
+    public GridController grid;
+
+    private void OnEnable()
+    {
+        grid = FindObjectOfType<GridController>();
+        grid.EventWipePlants += DestroyPlants;
+    }
+    private void Start()
+    {
+        grid = FindObjectOfType<GridController>();
+        grid.EventWipePlants += DestroyPlants;
+    }
+    void DestroyPlants()
+    {
+        Destroy(this.gameObject);
+    }
 }
