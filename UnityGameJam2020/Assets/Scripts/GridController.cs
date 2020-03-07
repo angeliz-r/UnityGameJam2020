@@ -25,7 +25,7 @@ public class GridController : MonoBehaviour
         CreateBlocks();
         _rTime = FindObjectOfType<RoundTimer>();
         _rScore = FindObjectOfType<RoundScoring>();
-        
+        _rTime.RoundStart += OnRoundChange;
     }
 
     private void Update()

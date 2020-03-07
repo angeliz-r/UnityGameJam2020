@@ -32,6 +32,7 @@ public class RoundScoring : MonoBehaviour
         if (manScore.ReturnTotalScore() > natureScore.ReturnTotalScore())
         {
             manScore.SaveCurrentScore();
+            natureScore.SaveCurrentScore();
             _manWins++;
             roundNum++;
 
@@ -43,6 +44,7 @@ public class RoundScoring : MonoBehaviour
         else
         {
             natureScore.SaveCurrentScore();
+            manScore.SaveCurrentScore();
             _natureWins++;
             roundNum++;
         }

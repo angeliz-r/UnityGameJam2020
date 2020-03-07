@@ -11,7 +11,7 @@ public class GameScoring : MonoBehaviour
     private float _totalScore;
     private float _totalGameScore;
 
-    private float[] _totalScoreArray;
+    private float _finalTotalScore;
     private int index = 0;
     void Awake()
     {
@@ -25,7 +25,7 @@ public class GameScoring : MonoBehaviour
     {       
         //save in an array to add them all together later
         index = _roundScoring.roundNum;
-        _totalScoreArray[index] = _totalScore;
+        _finalTotalScore += _totalScore;
     }
     public void UpdateScoreDisplay()
     {
@@ -44,11 +44,7 @@ public class GameScoring : MonoBehaviour
 
     public float AddTotalGameScore()
     {
-        for (int i = 0; i > index; i++)
-        {
-            _totalGameScore = _totalGameScore + _totalScoreArray[i];
-        }
-        return _totalGameScore;
+        return _finalTotalScore;
     }
 
     public float ReturnTotalScore()
