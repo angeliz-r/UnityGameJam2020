@@ -15,6 +15,8 @@ public class RoundTimer : MonoBehaviour
 
     public event Action RoundStart = () => { };
 
+    private bool doOnce;
+    private bool doOnceAgain;
     private void Awake()
     {
         _roundScoring = GameObject.FindGameObjectWithTag("roundScorer").GetComponent<RoundScoring>();
@@ -33,32 +35,38 @@ public class RoundTimer : MonoBehaviour
     public void TimerStart()
     {
         StartCoroutine(StartTurnTimer());
+        if (_roundScoring.roundNum < 2 && _roundScoring.roundNum != 0)
+        {
+            //show round number display
+            _roundDisplay.DisplayRoundNumber();
+            //smaller map
+            RoundStart();
+        }
     }
     public void TimerCheck()
     {
         if (_reducedTime <= 0)
         {
             _roundDisplay.DisplayRoundEnd();
-            if (_roundScoring.roundNum < 3)
-            {
-                RoundStart();
-                //compare scores & stop timer
-                _roundScoring.CompareScores();
-                //stop
-                StopCoroutine(StartTurnTimer());
-                //show round number display
-                _roundDisplay.DisplayRoundNumber();
 
+            if (_roundScoring.roundNum < 2)
+            {
+                StopCoroutine(StartTurnTimer());
+                _roundScoring.CompareScores();
                 //reset number & restart timer
                 _reducedTime = timerTime;
                 TimerStart();
             }
-            else if (_roundScoring.roundNum >= 3)
+            else if (_roundScoring.roundNum >= 2)
             {
                 //compare scores w each other
-                _roundScoring.CompareScores();
-                //count the amount of wins once rounds are over
-                _roundScoring.CountWins();
+                if (!doOnce)
+                {
+                    _roundScoring.CompareScores();
+                    //count the amount of wins once rounds are over
+                    _roundScoring.CountWins();
+                    doOnce = true;
+                }
                 //stop timer completely
                 StopCoroutine(StartTurnTimer());
             }
