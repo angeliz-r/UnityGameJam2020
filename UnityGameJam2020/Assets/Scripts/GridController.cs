@@ -129,6 +129,10 @@ public class GridController : MonoBehaviour
             {
                 _plant[i].SetActive(false);
             }
+            else
+            {
+                _plant[i].GetComponent<Collider2D>().enabled = true;
+            }
         }
         max.transform.position = new Vector2(6, 6);
         FindObjectOfType<CameraBehaviour>().UpdateCameraFocus(7);
@@ -159,6 +163,10 @@ public class GridController : MonoBehaviour
             if (_plant[i].transform.position.x >= 5 || _plant[i].transform.position.y >= 5)
             {
                 _plant[i].SetActive(false);
+            }
+            else
+            {
+                _plant[i].GetComponent<Collider2D>().enabled = true;
             }
         }
         max.transform.position = new Vector2(4, 4);
