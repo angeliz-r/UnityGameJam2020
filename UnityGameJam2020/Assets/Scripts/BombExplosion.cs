@@ -32,9 +32,13 @@ public class BombExplosion : MonoBehaviour
                 collision.transform.parent.GetComponent<Collider2D>().enabled = true;
 
                 if (type == PlayerType.MAN)
+                {
                     _rScore.manScore.DestroyLiveScore();
+                }
                 else if (type == PlayerType.NATURE)
+                { 
                     _rScore.natureScore.DestroyLiveScore();
+                }
 
                 Destroy(collision.gameObject);
             }
