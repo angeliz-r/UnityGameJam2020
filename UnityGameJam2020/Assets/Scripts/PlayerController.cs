@@ -19,8 +19,7 @@ public class PlayerController : MonoBehaviour
     public event Action EventPlant = () => { };
     private RoundScoring _rScore;
     private BombPlanter _bPlanter;
-
-
+    private AudioController _audio;
     private void Start()
     {
         stunValue = 0;
@@ -28,6 +27,7 @@ public class PlayerController : MonoBehaviour
         _myPos = transform.position;
         _rScore = FindObjectOfType<RoundScoring>();
         _bPlanter = GetComponent<BombPlanter>();
+        _audio = GetComponent<AudioController>();
     }
 
     private void Update()
@@ -71,6 +71,14 @@ public class PlayerController : MonoBehaviour
             {
                 GameObject obj = Instantiate(plant, _dir, Quaternion.identity);
                 obj.transform.parent = hit.transform;
+                if (obj.GetComponent<Plants>().myPlant == PlayerType.MAN)
+                {
+                    _audio.PlaySoundEffect(SFXCollection.makebldg_sfx);
+                }
+                else
+                {
+                    _audio.PlaySoundEffect(SFXCollection.makeplant_sfx);
+                }
                 ScoreUpdateOnPlant();
                 EventPlant();
             }
