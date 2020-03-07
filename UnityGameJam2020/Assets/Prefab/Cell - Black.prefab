@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 529818338810650360}
   - component: {fileID: 2607614730134048134}
   - component: {fileID: 3425144180533043669}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cell - Black
   m_TagString: NotWalkable
   m_Icon: {fileID: 0}

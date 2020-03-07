@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 156809714}
   - component: {fileID: 156809713}
   - component: {fileID: 156809712}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Checker (1)
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -312,9 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99bd250fb6cc58d4194af74db74435a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plant: {fileID: 1971743493413214583}
   canMove: 0
-  canPlant: 0
 --- !u!1 &618605576
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +325,7 @@ GameObject:
   - component: {fileID: 618605580}
   - component: {fileID: 618605579}
   - component: {fileID: 618605578}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Checker
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -407,9 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99bd250fb6cc58d4194af74db74435a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plant: {fileID: 1971743493413214583}
   canMove: 0
-  canPlant: 0
 --- !u!1 &1073342353
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,7 +555,7 @@ GameObject:
   - component: {fileID: 1747632984}
   - component: {fileID: 1747632983}
   - component: {fileID: 1747632982}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Checker (3)
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -639,9 +635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99bd250fb6cc58d4194af74db74435a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plant: {fileID: 1971743493413214583}
   canMove: 0
-  canPlant: 0
 --- !u!1 &2034637222
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,7 +648,7 @@ GameObject:
   - component: {fileID: 2034637226}
   - component: {fileID: 2034637225}
   - component: {fileID: 2034637224}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Checker (2)
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -734,9 +728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99bd250fb6cc58d4194af74db74435a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plant: {fileID: 1971743493413214583}
   canMove: 0
-  canPlant: 0
 --- !u!1001 &1178876005113204599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -873,11 +865,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell - Green
       objectReference: {fileID: 0}
-    - target: {fileID: 1910374366655601150, guid: 591a3b39031f9a842b71b5fa2fca7867,
-        type: 3}
-      propertyPath: m_TagString
-      value: Walkable
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 591a3b39031f9a842b71b5fa2fca7867, type: 3}
 --- !u!1 &1971743493413214583
@@ -892,7 +879,7 @@ GameObject:
   - component: {fileID: 1971743493413214584}
   - component: {fileID: 7316057625266785275}
   - component: {fileID: 5745392409208959035}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plant
   m_TagString: Plant
   m_Icon: {fileID: 0}
@@ -957,7 +944,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1971743493413214583}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 0, z: 0}
+  m_LocalPosition: {x: -4, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1116,7 +1103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7127626906794495883}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 618605577}
@@ -1139,7 +1126,7 @@ GameObject:
   - component: {fileID: 7127626906794495884}
   - component: {fileID: 7127626906794495885}
   - component: {fileID: 7127626906794495886}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1163,6 +1150,7 @@ MonoBehaviour:
   - {fileID: 618605580}
   - {fileID: 1747632984}
   - {fileID: 156809714}
+  plant: {fileID: 1971743493413214583}
   min: {fileID: 1073342354}
   max: {fileID: 46409774}
 --- !u!50 &7127626906794495885
