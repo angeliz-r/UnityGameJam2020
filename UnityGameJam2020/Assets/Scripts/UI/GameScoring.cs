@@ -23,10 +23,12 @@ public class GameScoring : MonoBehaviour
     {       
         //save in an array to add them all together later
         _finalTotalScore = _finalTotalScore + _totalScore;
+        _totalScore = 0;
     }
     public void UpdateScoreDisplay()
     {
         scoreDisplay.text = _totalScore.ToString();
+
     }
     public void AddLiveScore()
     {
