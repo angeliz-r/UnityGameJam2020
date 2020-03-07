@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
         hit = Physics2D.Raycast(transform.position, _faceDir, 1.0f, LayerMask.GetMask("Plantable"));
         if (stunValue > 0)
         {
+            _audio.PlaySoundEffect(SFXCollection.stun);
             StunDuration();
         }
         else
