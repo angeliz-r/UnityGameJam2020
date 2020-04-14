@@ -48,6 +48,19 @@ public class DualShock4Input : MonoBehaviour
     public event Action EventDpadXPress = () => { };
     public event Action EventDpadYPress = () => { };
 
+    //made this for keyboard controls - Angeliz
+    //gets the player number so that keyboard tracks correctly
+    public int GetJoystickNumber()
+    {
+        if (_joystickPlayerNum == PlayerControllerNumber.PLAYER_1)
+        {
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
+    }
     /// <summary>
     /// Gets the bool value of the PS4 Button when HELD
     /// </summary>

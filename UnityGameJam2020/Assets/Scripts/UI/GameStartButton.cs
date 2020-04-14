@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameStartButton : MonoBehaviour
 {
     private AudioController _audio;
@@ -12,6 +12,12 @@ public class GameStartButton : MonoBehaviour
     public void StartGame()
     {
         _audio.PlaySoundEffect(SFXCollection.click);
-        Loader.Load(Loader.Scene.Main);
+        SceneManager.LoadScene(2); //to loading screen
+    }
+
+    public void StartGameFromLoadScreen()
+    {
+        _audio.PlaySoundEffect(SFXCollection.click);
+        SceneManager.LoadScene(1); //to main game
     }
 }

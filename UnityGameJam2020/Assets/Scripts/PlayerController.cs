@@ -46,10 +46,34 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if ((Input.GetKeyDown(KeyCode.Space) || _ds.GetButtonDown(ControlCode.X)) && transform.position == _myPos)
+            if (/*(Input.GetKeyDown(KeyCode.Space) ||*/ _ds.GetButtonDown(ControlCode.X) && transform.position == _myPos)
                 Plant();
-            if (Input.GetKeyDown(KeyCode.F) || _ds.GetButtonDown(ControlCode.Square))
+            if (/*Input.GetKeyDown(KeyCode.F) ||*/ _ds.GetButtonDown(ControlCode.Square))
                 Push();
+
+            //keyboard controls
+            if (_ds.GetJoystickNumber() == 1) //player 1
+            {
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    Plant();
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    Push();
+                }
+            }
+            else //player 2
+            {
+                if (Input.GetKeyDown(KeyCode.Comma))
+                {
+                    Plant();
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha8))
+                {
+                    Push();
+                }
+            }
         }
         
     }
@@ -154,7 +178,7 @@ public class PlayerController : MonoBehaviour
         _down = checker[2].canMove;
         _left = checker[3].canMove;
 
-        if ((Input.GetKey(KeyCode.W) || _ds.GetAxisRaw(ControlCode.LeftStickY) > 0) && transform.position == _myPos)
+        if ((_ds.GetAxisRaw(ControlCode.LeftStickY) > 0) && transform.position == _myPos)
         {
             _faceDir = new Vector2(0, 1);
             if (_up && _myPos.y < max.position.y)
@@ -162,7 +186,7 @@ public class PlayerController : MonoBehaviour
                 _myPos = new Vector2(_myPos.x, _myPos.y + 1);
             }
         }
-        else if ((Input.GetKey(KeyCode.S) || _ds.GetAxisRaw(ControlCode.LeftStickY) < 0) && transform.position == _myPos)
+        else if (( _ds.GetAxisRaw(ControlCode.LeftStickY) < 0) && transform.position == _myPos)
         {
             _faceDir = new Vector2(0, -1);
 
@@ -171,7 +195,7 @@ public class PlayerController : MonoBehaviour
                 _myPos = new Vector2(_myPos.x, _myPos.y - 1);
             }
         }
-        else if ((Input.GetKey(KeyCode.A) || _ds.GetAxisRaw(ControlCode.LeftStickX) < 0) && transform.position == _myPos)
+        else if (( _ds.GetAxisRaw(ControlCode.LeftStickX) < 0) && transform.position == _myPos)
         {
             _faceDir = new Vector2(-1, 0);
             if (_left && _myPos.x > min.position.x)
@@ -180,7 +204,7 @@ public class PlayerController : MonoBehaviour
             }
             GetComponent<SpriteRenderer>().flipX = true;
         }
-        else if ((Input.GetKey(KeyCode.D) || _ds.GetAxisRaw(ControlCode.LeftStickX) > 0) && transform.position == _myPos)
+        else if (( _ds.GetAxisRaw(ControlCode.LeftStickX) > 0) && transform.position == _myPos)
         {
             _faceDir = new Vector2(1, 0);
             if (_right && _myPos.x < max.position.x)
@@ -188,6 +212,85 @@ public class PlayerController : MonoBehaviour
                 _myPos = new Vector2(_myPos.x + 1, _myPos.y);
             }
             GetComponent<SpriteRenderer>().flipX = false;
+        }
+
+        //keyboard controls
+        if (_ds.GetJoystickNumber() == 1) //player 1
+        {
+            if (Input.GetKey(KeyCode.W) && transform.position == _myPos) 
+            {
+                _faceDir = new Vector2(0, 1);
+                if (_up && _myPos.y < max.position.y)
+                {
+                    _myPos = new Vector2(_myPos.x, _myPos.y + 1);
+                }
+            }
+            else if (Input.GetKey(KeyCode.S) && transform.position == _myPos)
+            {
+                _faceDir = new Vector2(0, -1);
+
+                if (_down && _myPos.y > min.position.y)
+                {
+                    _myPos = new Vector2(_myPos.x, _myPos.y - 1);
+                }
+            }
+            else if (Input.GetKey(KeyCode.A) && transform.position == _myPos)
+            {
+                _faceDir = new Vector2(-1, 0);
+                if (_left && _myPos.x > min.position.x)
+                {
+                    _myPos = new Vector2(_myPos.x - 1, _myPos.y);
+                }
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else if (Input.GetKey(KeyCode.D) && transform.position == _myPos)
+            {
+                _faceDir = new Vector2(1, 0);
+                if (_right && _myPos.x < max.position.x)
+                {
+                    _myPos = new Vector2(_myPos.x + 1, _myPos.y);
+                }
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
+
+        }
+        else //player 2
+        {
+            if (Input.GetKey(KeyCode.I) && transform.position == _myPos)
+            {
+                _faceDir = new Vector2(0, 1);
+                if (_up && _myPos.y < max.position.y)
+                {
+                    _myPos = new Vector2(_myPos.x, _myPos.y + 1);
+                }
+            }
+            else if (Input.GetKey(KeyCode.K) && transform.position == _myPos)
+            {
+                _faceDir = new Vector2(0, -1);
+
+                if (_down && _myPos.y > min.position.y)
+                {
+                    _myPos = new Vector2(_myPos.x, _myPos.y - 1);
+                }
+            }
+            else if (Input.GetKey(KeyCode.J) && transform.position == _myPos)
+            {
+                _faceDir = new Vector2(-1, 0);
+                if (_left && _myPos.x > min.position.x)
+                {
+                    _myPos = new Vector2(_myPos.x - 1, _myPos.y);
+                }
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else if (Input.GetKey(KeyCode.L) && transform.position == _myPos)
+            {
+                _faceDir = new Vector2(1, 0);
+                if (_right && _myPos.x < max.position.x)
+                {
+                    _myPos = new Vector2(_myPos.x + 1, _myPos.y);
+                }
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
         }
 
         if (transform.position != _myPos) {

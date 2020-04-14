@@ -41,6 +41,8 @@ public class BombPlanter : MonoBehaviour
 
     public void PlantABomb() {
         if (_hasBomb && transform.position == player._myPos) {
+
+            //controller
             if (ds.GetButtonDown(ControlCode.Circle)) {
                 // Plant Round Bomb
                  SetBomb(_playerType, _roundBomb);
@@ -48,6 +50,34 @@ public class BombPlanter : MonoBehaviour
             if (ds.GetButtonDown(ControlCode.Triangle)) {
                 // Plant Cross Bomb
                  SetBomb(_playerType, _crossBomb);
+            }
+
+            //keyboard controls
+            if(ds.GetJoystickNumber() == 1) //player 1
+            {
+                //round bomb
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    SetBomb(_playerType, _roundBomb);
+                }
+                //cross bomb
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    SetBomb(_playerType, _crossBomb);
+                }
+            }
+            else //player 2
+            {
+                //round bomb
+                if (Input.GetKeyDown(KeyCode.O))
+                {
+                    SetBomb(_playerType, _roundBomb);
+                }
+                //cross bomb
+                if (Input.GetKeyDown(KeyCode.U))
+                {
+                    SetBomb(_playerType, _crossBomb);
+                }
             }
         }
     }
